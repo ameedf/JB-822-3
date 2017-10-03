@@ -13,6 +13,6 @@
 public class Grades {
 
     public static void main(String[] args) {
-        // enter your code here :)
+        // This is student 1 code
     }
 }
