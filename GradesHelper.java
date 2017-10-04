@@ -7,7 +7,7 @@ public class GradesHelper {
 	public byte validateNumber(int number) {
 		while (number < 1 || number > 100) {
 			System.out.print("You can only have from 1 to 100 students. Please try again: ");
-			number = input.nextByte();
+			number = input.nextInt();
 		}
 		return (byte) number;
 	}
@@ -41,10 +41,10 @@ public class GradesHelper {
 	}
 	
 	public int getAvgGrade (ArrayList<Student> students) {
-		int average = 0;
+		int sum = 0;
 		for (Student student : students) {
-			average += student.getGrade();
+			sum += student.getGrade();
 		}
-		return average / students.size();
+		return sum / students.size();
 	}
 }
