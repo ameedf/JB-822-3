@@ -1,3 +1,6 @@
+/.classpath
+/.project
+/.gitignore
 /Grades.class
 /Student.class
 /AppGradesHelper.class

@@ -27,25 +27,25 @@ public class Grades {
 		int inputNumber = input.nextInt();
 		byte numOfStudents = helper.validateNumber(inputNumber);
 
-		// Assigning student grades from user input
+		// Creating students list and assigning grades from user input
 		for (byte i = 0; i < numOfStudents; i++) {	
 			Student currentStudent = new Student();
 			currentStudent.setNumber((byte) (i+1));
 			
 			System.out.print("Enter grade for student number " + currentStudent.getNumber() + ": ");
 			int inputGrade = input.nextInt();
-			byte currentGrade = helper.validateGrade(inputGrade);
-			currentStudent.setGrade(currentGrade);
+			currentStudent.setGrade(inputGrade);
 			
 			students.add(currentStudent);
 		}
 		
 		// Print results
-		Student minGradeStudent = helper.getMinGradeStudent(students);
-		Student maxGradeStudent = helper.getMaxGradeStudent(students);
+		students = helper.sortStudents(students);
+		Student bestStudent = students.get((students.size() - 1));
+		Student worstStudent = students.get(0);
 		
-		System.out.println("Minimum grade " + minGradeStudent.getGrade() + " has student number " + minGradeStudent.getNumber());
-		System.out.println("Maximum grade " + maxGradeStudent.getGrade() + " has student number " + maxGradeStudent.getNumber());
+		System.out.println("Maximum grade " + bestStudent.getGrade() + " has student number " + bestStudent.getNumber());
+		System.out.println("Minimum grade " + worstStudent.getGrade() + " has student number " + worstStudent.getNumber());
 		System.out.println("Avarage class grade is " + helper.getAvgGrade(students));
 	}
 }

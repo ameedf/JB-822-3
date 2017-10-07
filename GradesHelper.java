@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class GradesHelper {
@@ -12,34 +13,17 @@ public class GradesHelper {
 		return (byte) number;
 	}
 	
-	public byte validateGrade(int grade) {
-		while (grade < 1 || grade > 100) {
-			System.out.print("You can only set grade from 1 to 100. Please try again: ");
-			grade = input.nextByte();
-		}
-		return (byte) grade;
-	}
-	
-	public Student getMinGradeStudent (ArrayList<Student> students) {
-		Student minGradeStudent = students.get(0);
-		for (Student student : students) {
-			if (student.getGrade() < minGradeStudent.getGrade()) {
-				minGradeStudent = student;
+	public ArrayList<Student> sortStudents (ArrayList<Student> students) {
+		for (int i = 0; i < students.size(); i++) {
+			if (students.get(i).getGrade() < students.get(0).getGrade()) {
+				Collections.swap(students, i, 0);
+			} else if (students.get(i).getGrade() > students.get((students.size() - 1)).getGrade()) {
+				Collections.swap(students, i, (students.size() - 1));
 			}
 		}
-		return minGradeStudent;
+		return students;
 	}
-	
-	public Student getMaxGradeStudent (ArrayList<Student> students) {
-		Student maxGradeStudent = students.get(0);
-		for (Student student : students) {
-			if (student.getGrade() > maxGradeStudent.getGrade()) {
-				maxGradeStudent = student;
-			}
-		}
-		return maxGradeStudent;
-	}
-	
+
 	public int getAvgGrade (ArrayList<Student> students) {
 		int sum = 0;
 		for (Student student : students) {
