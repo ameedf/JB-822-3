@@ -12,40 +12,47 @@
  * 3. The average of the grades
  */
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Grades {
 	public static void main(String[] args) {
-		// Setting up application
-		ArrayList<Student> students = new ArrayList<Student>();
-		GradesHelper helper = new GradesHelper();
 		Scanner input = new Scanner(System.in);
-		
-		// Getting number of students from user input
-		System.out.print("Enter number of students: ");
-		int inputNumber = input.nextInt();
-		byte numOfStudents = helper.validateNumber(inputNumber);
 
-		// Creating students list and assigning grades from user input
-		for (byte i = 0; i < numOfStudents; i++) {	
-			Student currentStudent = new Student();
-			currentStudent.setNumber((byte) (i+1));
-			
-			System.out.print("Enter grade for student number " + currentStudent.getNumber() + ": ");
-			int inputGrade = input.nextInt();
-			currentStudent.setGrade(inputGrade);
-			
-			students.add(currentStudent);
+		byte numOfStudents;
+		byte[] grades;
+		short gradesSum = 0;
+		byte maxIndex = 0;
+		byte minIndex = 0;
+
+		System.out.print("Enter number of students: ");
+		numOfStudents = input.nextByte();
+		grades = new byte[numOfStudents];
+		while (numOfStudents < 1 || numOfStudents > 100) {
+			System.out.println("Only 1 to 100 students allowed. Please try again.");
+			numOfStudents = input.nextByte();
 		}
-		
-		// Print results
-		students = helper.sortStudents(students);
-		Student bestStudent = students.get((students.size() - 1));
-		Student worstStudent = students.get(0);
-		
-		System.out.println("Maximum grade " + bestStudent.getGrade() + " has student number " + bestStudent.getNumber());
-		System.out.println("Minimum grade " + worstStudent.getGrade() + " has student number " + worstStudent.getNumber());
-		System.out.println("Avarage class grade is " + helper.getAvgGrade(students));
+
+		for (byte i = 0; i < numOfStudents; i++) {
+			System.out.print("Enter grade for student number " + (i+1) + ": ");
+			byte currentGrade = input.nextByte();
+			while (currentGrade < 1 || currentGrade > 100) {
+				System.out.print("Grade can be only from 1 to 100. Please try again.");
+				currentGrade = input.nextByte();
+			}
+			grades[i] = currentGrade;
+			gradesSum += currentGrade;
+		}
+
+		for (byte i = 0; i < grades.length; i++) {
+			if (grades[i] > grades[maxIndex]) {
+				maxIndex = i;
+			} else if (grades[i] < grades[minIndex]) {
+				minIndex = i;
+			}
+		}
+
+		System.out.println("The winner is student number " + (maxIndex + 1) + " and his grade is " + grades[maxIndex]);
+		System.out.println("The loser is student number " + (minIndex + 1) + " and his grade is " + grades[minIndex]);
+		System.out.println("Average class grade is " + (float) (gradesSum) / numOfStudents);
 	}
 }
