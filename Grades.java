@@ -26,11 +26,11 @@ public class Grades {
 
 		System.out.print("Enter number of students: ");
 		numOfStudents = input.nextByte();
-		grades = new byte[numOfStudents];
 		while (numOfStudents < 1 || numOfStudents > 100) {
 			System.out.println("Only 1 to 100 students allowed. Please try again.");
 			numOfStudents = input.nextByte();
 		}
+		grades = new byte[numOfStudents];
 
 		for (byte i = 0; i < numOfStudents; i++) {
 			System.out.print("Enter grade for student number " + (i+1) + ": ");
