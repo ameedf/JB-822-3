@@ -27,17 +27,17 @@
 
 import java.util.Scanner;
 
-public class Palindrome {
+public class PalindromeNoArr {
 	public static void main(String[] args) {
 		int PalindromeNum, PalindromeLen = 0;
 		Scanner in = new Scanner(System.in);
 
 		do {
-			System.out.print("Enter number from 0 to 1,000,000,000:");
+			System.out.print("Enter number from 1 to 1,000,000,000:");
 			PalindromeNum = in.nextInt();
-		} while (PalindromeNum < 0 || PalindromeNum > 1000000000);
+		} while (PalindromeNum < 1 || PalindromeNum > 1000000000);
 
-		int num, remainder, plen = 0;
+		int num, remainder;
 		int reversedPalindromeNum = 0;
 		num = PalindromeNum;
 
@@ -49,34 +49,34 @@ public class Palindrome {
 			remainder = num % 10;
 			reversedPalindromeNum = reversedPalindromeNum * 10 + remainder;
 			num = num / 10;
-			plen++;
+			PalindromeLen++;
 		}
 
 		if (PalindromeNum == reversedPalindromeNum) {
 			num = PalindromeNum;
-			int i = plen;
-			while (i > 0) {
+			int i = PalindromeLen;
+			
+			for (int next = 0; next < PalindromeLen / 2; next++) {
 				remainder = num % 10;
-				if (i > (plen / 2)) {
-					fPart += " " + remainder;
-					if ((plen % 2 != 0) && (i == plen / 2 + 1)) {
-						sPart += " " + remainder;
-					}
-				} else {
-					sPart += " " + remainder;
-				}
+				fPart += " " + remainder;
+				sPart = remainder + " " + sPart;
 				num = num / 10;
-				i--;
+			}
+			
+			// Handle odd length
+			if (PalindromeLen % 2 == 1) {
+				fPart += " " + num % 10;
+				sPart = num % 10 + " " + sPart;
 			}
 
 			outMessage += "\n Given number " + PalindromeNum + " is a Palindrome!";
-			outMessage += "\n Output: size =  " + plen;
+			outMessage += "\n Output: size =  " + PalindromeLen;
 			outMessage += "\n First part = " + fPart;
 			outMessage += "\n Second part = " + sPart;
 			System.out.println(outMessage);
 
 		} else {
-			System.out.println("\n Given number " + PalindromeNum + "is NOT a Palindrome!");
+			System.out.println("\n Given number " + PalindromeNum + " is NOT a Palindrome!");
 		}
 	}
 }
