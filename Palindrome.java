@@ -1,3 +1,4 @@
+
 /**
  * A Palindrome is a sequence of characters which reads the same backward as forward.
  * Examples: anna, civic, kayak, level, madam,...
@@ -28,63 +29,54 @@ import java.util.Scanner;
 
 public class Palindrome {
 	public static void main(String[] args) {
-		int PalindromeNum, tmp, ogg, div = 0, PalindromeLen = 0;
+		int PalindromeNum, PalindromeLen = 0;
 		Scanner in = new Scanner(System.in);
-		String outMessage;
 
 		do {
 			System.out.print("Enter number from 0 to 1,000,000,000:");
 			PalindromeNum = in.nextInt();
 		} while (PalindromeNum < 0 || PalindromeNum > 1000000000);
-		
-		//Find length of integer
-		tmp = PalindromeNum;
-		while (tmp != 0) {
-			tmp = tmp / 10;
-			PalindromeLen++;
+
+		int num, remainder, plen = 0;
+		int reversedPalindromeNum = 0;
+		num = PalindromeNum;
+
+		String outMessage = "";
+		String fPart = "";
+		String sPart = "";
+
+		while (num > 0) {
+			remainder = num % 10;
+			reversedPalindromeNum = reversedPalindromeNum * 10 + remainder;
+			num = num / 10;
+			plen++;
 		}
-		
-		//Allocate an array depending on integer length
-		byte[] PalindromeArr = new byte[PalindromeLen];
-		
-		//Copy integer to array by characters
-		tmp = PalindromeNum;
-		for (int i = PalindromeArr.length - 1; i >= 0; i--) {
-			PalindromeArr[i] = (byte) (tmp % 10);
-			tmp /= 10;
-		}
-		
-		//Check if the entered integer is palindrome
-		boolean isPalindrome = true;
-		for (int i = 0, j = (PalindromeArr.length - 1); i < j && isPalindrome; i++, j--) {
-			if (PalindromeArr[i] != PalindromeArr[j]) {
-				isPalindrome = false;
-			}
-		}
-		
-		//Preparing and print out message 
-		if (isPalindrome) {
-			int N = PalindromeArr.length;
-			String firstPart = "";
-			String secondPart = "";
-			
-			for (int i = 0; i < PalindromeArr.length; i++) {
-				if (i < N / 2) {
-					firstPart += " " + PalindromeArr[i];
-				} else {
-					if ((N % 2 != 0) && (i == N / 2)) {
-						firstPart += " " + PalindromeArr[i];
+
+		if (PalindromeNum == reversedPalindromeNum) {
+			num = PalindromeNum;
+			int i = plen;
+			while (i > 0) {
+				remainder = num % 10;
+				if (i > (plen / 2)) {
+					fPart += " " + remainder;
+					if ((plen % 2 != 0) && (i == plen / 2 + 1)) {
+						sPart += " " + remainder;
 					}
-					secondPart += " " + PalindromeArr[i];
+				} else {
+					sPart += " " + remainder;
 				}
+				num = num / 10;
+				i--;
 			}
-			outMessage = "\nInput: " + PalindromeNum + "\nOutput: size = " + PalindromeArr.length + "\nFirst part ="
-					+ firstPart + "\nSecond part =" + secondPart;
+
+			outMessage += "\n Given number " + PalindromeNum + " is a Palindrome!";
+			outMessage += "\n Output: size =  " + plen;
+			outMessage += "\n First part = " + fPart;
+			outMessage += "\n Second part = " + sPart;
 			System.out.println(outMessage);
+
 		} else {
-			System.out.println("\nEntered integer: " + PalindromeNum + " is NOT a Palindrome!");
+			System.out.println("\n Given number " + PalindromeNum + "is NOT a Palindrome!");
 		}
-		
-		in.close();
 	}
 }
