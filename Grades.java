@@ -26,9 +26,9 @@ public class Grades {
         }
 
         byte studentsArray[] = new byte[numOfStudents];
+        short grade = 0;
         byte indexHighest = 0;
         byte indexLowest = 0;
-
         byte highest = 0;
         byte lowest = 100;
         float sum = 0;
@@ -38,7 +38,7 @@ public class Grades {
         for (byte i=0 ; i < studentsArray.length ; i++) {
 
             System.out.printf("Enter grade: ");
-            short grade = input.nextShort();
+            grade = input.nextShort();
 
             while (grade < 0 || grade > 100) {
                 System.out.printf("Please enter a valid grade between 0 - 100: ");
