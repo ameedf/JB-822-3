@@ -20,5 +20,134 @@
  * "There are X players with better scores") or if he's at the top of the table.
  * Before the next game, the top 3 scores (which are greater than 0) will be printed
  */
+import java.util.Random;
+import java.util.Scanner;
+
 public class GuessTheNumber {
+	public static void main(String[] args) {
+		int numberOfSteps=0, userId, theNumber, theNumberLenght, userNumber=0;
+		int[] highScoreTable = new int[100];
+		int choise = 0;
+		Scanner in = new Scanner(System.in);
+		
+		do {
+			numberOfSteps = 0;
+			theNumber = 0;
+			do {
+				System.out.print("Enter Your ID from 1 to 100:");
+				userId = in.nextInt();
+			} while (userId < 1 || userId > 100);
+			
+			do {
+				System.out.print("Enter the number of digits to guess, from 2 to 9:");
+				theNumberLenght = in.nextInt();
+			} while (theNumberLenght < 2 || theNumberLenght > 9);
+			
+			//generate theNumber
+			for (int i = 0; i < theNumberLenght ; i++) {
+				Random rn = new Random();
+				int randomNum;
+				if(i == 0) {
+					//first number can't be 0
+					randomNum = rn.nextInt(9) + 1;
+				} else {
+					//must be an unique number
+					boolean flag = false;
+					do {
+						flag = false;
+						randomNum = rn.nextInt(10);
+					//	System.out.print("\n Next try ");
+						int tmpNum = 0, tmptheNumber = theNumber;
+						for (int j = (theNumberLenght - 1); (j > (theNumberLenght - 1 - i)  && flag == false ); j--) {
+							tmpNum = (int)( tmptheNumber / Math.pow(10, j));
+							tmptheNumber = (int)( tmptheNumber % Math.pow(10, j));
+						//	System.out.println("\nj=" +j + " TheNumber:" + theNumber + " randomNum = " +randomNum + " tmpNum = " +tmpNum+ " tmptheNumber = " +tmptheNumber);
+							if(randomNum == tmpNum) {
+								flag = true;
+							}
+						}
+					} while(flag);
+				}
+				//System.out.print("randomNum: " + randomNum);
+				theNumber += randomNum * Math.pow(10, (theNumberLenght-1)-i);
+				//System.out.print(" TheNumber:" + theNumber);
+			}
+			System.out.println("TheNumber:" + theNumber);
+			
+			do {
+				//The game logic
+				if (numberOfSteps > 0) {
+					int tmptheNumberDigit,tmptheNumber = theNumber;
+					int tmpuserNumberIndx = 0, tmpuserNumberDigit,tmpuserNumber = userNumber;
+					
+					int counterSamePosition = 0;
+					int counterDifferentPosition = 0;
+					
+					for (int j = 0; j < theNumberLenght ; j++) {
+						tmpuserNumberDigit = (int)( tmpuserNumber / Math.pow(10, theNumberLenght-1-j));
+						tmpuserNumber = (int)( tmpuserNumber % Math.pow(10, theNumberLenght-1-j));
+						
+						tmptheNumber = theNumber;
+						for (int i = 0; i < theNumberLenght ; i++) {
+							tmptheNumberDigit = (int)( tmptheNumber / Math.pow(10, theNumberLenght-1-i));
+							tmptheNumber = (int)( tmptheNumber % Math.pow(10, theNumberLenght-1-i));
+						//	System.out.println("theNumberLenght:" + theNumberLenght+" i="+i+" j="+j);
+						//	System.out.println("tmpuserNumberDigit:" + tmpuserNumberDigit);
+						//	System.out.println("tmptheNumberDigit:" + tmptheNumberDigit);
+							if(tmpuserNumberDigit == tmptheNumberDigit) {
+								if(i == j) {
+									counterSamePosition++;
+								} else {
+									counterDifferentPosition++;
+								}
+							}
+						}
+					}
+					System.out.println("\nYou entered: "+userNumber+". You guessed: on the same position:" + counterSamePosition + ", on the different position:" + counterDifferentPosition);
+				}
+				
+				numberOfSteps++;
+				
+				//Check user input
+				int counterUserNumberLenght = 0;
+				do {	
+					
+					System.out.println("Try to guess! Try #:" + numberOfSteps + ". Enter the "+theNumberLenght+"-digits number:");
+					userNumber = in.nextInt();
+					
+					int tmpun = userNumber;
+					counterUserNumberLenght = 0;
+					while (tmpun > 0) {
+						tmpun = tmpun / 10;
+						counterUserNumberLenght++;
+					}
+				} while(theNumberLenght != counterUserNumberLenght);	
+				
+			} while( theNumber != userNumber);
+			
+			//Update highScoreTable
+			highScoreTable[userId-1] = numberOfSteps;
+			System.out.print("Congratulations user number: " + userId + "! You win from " +numberOfSteps+ " trays!");
+			System.out.println("\n---- High-Scores Table -----");
+			int topPlayersCounter = 0;
+			for (int i = 0; i < highScoreTable.length; i++) {
+				if(highScoreTable[i] >0) {
+					System.out.println("User #" + (i+1)  + " score: " +highScoreTable[i]+ " trays!");
+				}
+				if(highScoreTable[i] < highScoreTable[userId-1] && highScoreTable[i] > 0) {
+					topPlayersCounter++;
+				}
+				
+			}
+			if(topPlayersCounter>0) {
+				System.out.print("\nThere are " + topPlayersCounter + " players with better scores!");
+			} else {
+				System.out.print("\nYou are at the top of the table!");
+			}
+			System.out.print("\nOne more game? Press 1 to game again or other digit for exit. ");
+			choise = in.nextInt();
+			
+		} while( choise == 1); 
+		System.out.print("\nBy-By!");
+	}
 }
