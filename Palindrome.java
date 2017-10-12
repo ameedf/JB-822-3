@@ -38,6 +38,7 @@ public class Palindrome {
             System.out.printf("Please enter a valid number: ");
             inputNum = input.nextLong();
         }
+        input.close();
 
         palindromeSize = checkIfPalindrome(inputNum);
         if (palindromeSize == 0) { return; }
