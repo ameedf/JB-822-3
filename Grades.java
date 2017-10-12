@@ -11,8 +11,44 @@
  * 3. The average of the grades
  */
 public class Grades {
-
     public static void main(String[] args) {
-        // enter your code here :)
+    		Scanner input = new Scanner(System.in);
+    		byte numOfStudents;
+    		byte[] grades;
+    		short gradesSum = 0;
+    		byte maxIndex = 0;
+    		byte minIndex = 0;
+    		
+    		System.out.print("Enter number of students: ");
+    		numOfStudents = input.nextByte();
+    		while (numOfStudents < 1 || numOfStudents > 100) {
+    			System.out.println("Only 1 to 100 students allowed. Please try again.");
+    				numOfStudents = input.nextByte();
+    			}
+    		grades = new byte[numOfStudents];
+    		
+    		for (byte i = 0; i < numOfStudents; i++) {
+    			System.out.print("Enter grade for student number " + (i+1) + ": ");
+    			byte currentGrade = input.nextByte();
+    			while (currentGrade < 1 || currentGrade > 100) {
+    				System.out.print("Grade can be only from 1 to 100. Please try again.");
+    				currentGrade = input.nextByte();
+    			}
+    			grades[i] = currentGrade;
+    			gradesSum += currentGrade;
+    		}
+    		
+    		for (byte i = 0; i < grades.length; i++) {
+    			if (grades[i] > grades[maxIndex]) {
+    				maxIndex = i;
+    			} else if (grades[i] < grades[minIndex]) {
+    				minIndex = i;
+    			}
+    		}
+
+    	 	System.out.println("The winner is student number " + (maxIndex + 1) + " and his grade is " + grades[maxIndex]);
+    	 	System.out.println("The loser is student number " + (minIndex + 1) + " and his grade is " + grades[minIndex]);
+    	 	System.out.println("Average class grade is " + (float) (gradesSum) / numOfStudents);
+    	 	}
     }
 }
