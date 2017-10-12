@@ -1,3 +1,4 @@
+
 /**
  * Your assignment is to create the game "Guess The Number". Here's a description of the game:
  * (Taken from "http://www.goobix.com/games/guess-the-number/")
@@ -20,5 +21,84 @@
  * "There are X players with better scores") or if he's at the top of the table.
  * Before the next game, the top 3 scores (which are greater than 0) will be printed
  */
+import java.util.Scanner;
+
 public class GuessTheNumber {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Please enter number of digits for the game (1 to 10): ");
+		int targetNumberSize = input.nextInt();
+		int[] userGuessArray = new int[targetNumberSize];
+		int[] targetNumber = new int[targetNumberSize];
+		for (int i = 0; i < targetNumberSize; i++) {
+			targetNumber[i] = 10;
+		}
+		
+		// Generate target number
+		for (int i = 0; i < targetNumberSize; i++) {
+			int numberToAdd = (int) (Math.random() * 10);
+			for (int j = 0; j < targetNumberSize; j++) {
+				if (numberToAdd == targetNumber[j]) {
+					numberToAdd = (int) (Math.random() * 10);
+					j = 0;
+				}
+			}
+			targetNumber[i] = numberToAdd;
+		}
+		
+		// Start of game loop
+		boolean guessed = false;
+		int trials = 0;
+		int[] guesses = new int[100];
+		int[] guessCorrectPlace = new int[100];
+		int[] guessCorrectNumbers = new int[100];
+		int guessCounter = 0;
+		
+		while(!guessed) {
+			if(trials != 0) {
+				System.out.println("Before new guess, here are your previouse trials: ");
+				for (int i = 0; i < trials; i++) {
+					System.out.print("Trial number " + (i+1) + ": " + guesses[i] + ". ");
+					System.out.println(guessCorrectNumbers[i] + " correct numbers, " + guessCorrectPlace[i] + " of them at the right place!");
+				}
+			}
+			
+			System.out.print("Enter your guess (" + targetNumberSize + " numbers): ");
+			int userGuess = input.nextInt();
+			guesses[guessCounter] = userGuess;
+			
+			// Convert user input into array
+			int j = targetNumber.length - 1;
+			while (j > -1) {
+				userGuessArray[j] = userGuess % 10;
+				userGuess /= 10;
+				j--;
+			}
+			
+			// Check user input
+			int correctPlace = 0;
+			int correctNumber = 0;
+			for (int i = 0; i < targetNumber.length; i++) {
+				if (targetNumber[i] == userGuessArray[i]) {
+					correctPlace++;
+					guessCorrectPlace[guessCounter] = correctPlace;
+				}
+				for (int num : targetNumber) {
+					if (num == userGuessArray[i]) {
+						correctNumber++;
+						guessCorrectNumbers[guessCounter] = correctNumber;
+					}
+				}
+			}
+			if (correctPlace == targetNumberSize) {
+				System.out.println("This is correct number! Congratulations! It took you " + trials + " trials to guess!");
+				guessed = true;
+			} else {
+				System.out.println("You have guessed " + correctNumber + " numbers, " + correctPlace + " of them at the right place!");
+				trials++;
+			}
+			guessCounter++;
+		} // End of game loop
+	}
 }
