@@ -50,7 +50,7 @@ public class GuessTheNumber {
 				Random rn = new Random();
 				int randomNum;
 				if (i == 0) {
-					// first number can't be 0
+					// First digit in the number can't be 0
 					randomNum = rn.nextInt(9) + 1;
 				} else {
 					
@@ -89,15 +89,19 @@ public class GuessTheNumber {
 					int counterSamePosition = 0;
 					int counterDifferentPosition = 0;
 					
-					//Count the guessed numbers for player notifications
+					//Count the guessed digits for player notifications
 					for (int j = 0; j < theNumberLength; j++) {
+						
 						tmpuserNumberDigit = (int) (tmpuserNumber / Math.pow(10, theNumberLength - 1 - j));
 						tmpuserNumber = (int) (tmpuserNumber % Math.pow(10, theNumberLength - 1 - j));
 
+						//For each entered digit check the all digits in generated number
 						tmptheNumber = theNumber;
 						for (int i = 0; i < theNumberLength; i++) {
 							tmptheNumberDigit = (int) (tmptheNumber / Math.pow(10, theNumberLength - 1 - i));
 							tmptheNumber = (int) (tmptheNumber % Math.pow(10, theNumberLength - 1 - i));
+							
+							//If digits is same, check the position
 							if (tmpuserNumberDigit == tmptheNumberDigit) {
 								if (i == j) {
 									counterSamePosition++;
@@ -116,16 +120,17 @@ public class GuessTheNumber {
 				// Check user input for same length as generated number.
 				int counterUserNumberLenght = 0;
 				do {
-					System.out.print("Try to guess! Try #:" + numberOfSteps + ". Enter the " + theNumberLength
-							+ "-digits number:");
+					System.out.print("Try #:" + numberOfSteps + ". Enter the " + theNumberLength + "-digits number:");
 					userNumber = in.nextInt();
 
+					//Count the entered length of the number.
 					int tmpun = userNumber;
 					counterUserNumberLenght = 0;
 					while (tmpun > 0) {
 						tmpun = tmpun / 10;
 						counterUserNumberLenght++;
 					}
+					
 				} while (theNumberLength != counterUserNumberLenght);
 
 			} while (theNumber != userNumber);
@@ -153,6 +158,8 @@ public class GuessTheNumber {
 			} else {
 				System.out.print("\nYou are at the top of the table!");
 			}
+			
+			
 			System.out.print("\nOne more game? Press 1 to game again or other digit for exit. ");
 			choise = in.nextInt();
 
