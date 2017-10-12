@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * A Palindrome is a sequence of characters which reads the same backward as forward.
  * Examples: anna, civic, kayak, level, madam,...
@@ -25,6 +27,64 @@
  */
 public class Palindrome {
     public static void main(String[] args) {
-        // Your code goes here :)
+
+        Scanner input  = new Scanner(System.in);
+        byte palindromeSize;
+
+        System.out.printf("Please enter a number(int), between 0 and 1,000,000,000: ");
+        long inputNum = input.nextInt();
+
+        while (inputNum <= 0 || inputNum > 1000000000) {
+            System.out.printf("Please enter a valid number: ");
+            inputNum = input.nextLong();
+        }
+        input.close();
+
+        palindromeSize = checkIfPalindrome(inputNum);
+        if (palindromeSize == 0) { return; }
+
+        byte[] palindromeArr = new byte[palindromeSize];
+        enterPalindromeIntoArray(palindromeArr, inputNum);
+
+        printPalindrome(palindromeArr, "First", 0, palindromeArr.length/2);
+        System.out.println();
+        printPalindrome(palindromeArr, "Second", palindromeArr.length/2, palindromeArr.length-1);
+    }
+
+    private static byte checkIfPalindrome (long inputNum) {
+        int reversedNum = 0;
+        byte numDigits = 0;
+        int num = (int)inputNum;
+
+        while (num != 0 ) {
+            reversedNum = reversedNum * 10 +  (num % 10);
+            num = num / 10;
+            numDigits++;
+        }
+
+        if (inputNum != reversedNum) {
+            System.out.println("Your number is NOT a palindrome!");
+            return 0;
+        }
+        else {
+            System.out.println("Your number is a palindrome!");
+            return numDigits;
+        }
+    }
+
+    private static void enterPalindromeIntoArray (byte[] palindromeArr, long inputNum) {
+        for (int i = 0 ; i < palindromeArr.length ; i++) {
+            palindromeArr[i] = (byte)(inputNum % 10);
+            inputNum = inputNum / 10;
+        }
+    }
+
+    private static void printPalindrome(byte[] palindromeArr, String partToPrint, int startPoint, int endPoint) {
+        System.out.printf(partToPrint + "part = ");
+
+        while (startPoint <= endPoint) {
+            System.out.printf(palindromeArr[startPoint] + " ");
+            startPoint++;
+        }
     }
 }
