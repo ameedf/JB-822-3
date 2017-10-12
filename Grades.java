@@ -2,7 +2,7 @@
 public class Grades {
 
     public static void main(String[] args) {
-        public static void main(String[] args) {
+    
 
 		// ask for number of grades
 		Scanner in = new Scanner(System.in);
