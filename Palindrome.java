@@ -4,10 +4,12 @@ import java.util.Arrays;
 public class Palindrome {
 	public static void main(String[] args) {
 
+		//Asks for a number
 		Scanner in = new Scanner(System.in);
 		System.out.println("please enter a number between 0 and 1,000,000,000");
 		int n = in.nextInt();
 
+		//Checks numer's validity
 		while (n < 0 || n > 1000000000) {
 			System.out.println("please enter a valid number");
 			n = in.nextInt();
@@ -16,6 +18,7 @@ public class Palindrome {
 
 		in.close();
 
+		//Calculates array's length
 		int arrLength;
 
 		if (n < 100000) {
@@ -53,6 +56,7 @@ public class Palindrome {
 		}
 
 
+		//Separates the digits of the number into a new array
 		int[] digits = new int[arrLength];
 
 		digits[0] = n / (int) Math.pow(10, arrLength - 1);
@@ -68,6 +72,7 @@ public class Palindrome {
 		int c = 0;
 		int tmp = arrLength;
 		
+		//Checks if the number is palindrome
 		while (c < tmp){
 			if( digits[c] == digits[tmp-1] ){
 				c++;
@@ -79,7 +84,7 @@ public class Palindrome {
 			
 			}
 		}
-		
+		//Shows results
 		System.out.println("Input: " + n);
 		System.out.println("Size: " + arrLength);
 		System.out.print("First Part: ");
