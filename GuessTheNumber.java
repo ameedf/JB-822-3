@@ -27,8 +27,13 @@ public class GuessTheNumber {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		System.out.print("Please enter number of digits for the game (1 to 10): ");
+		System.out.print("Please enter number of digits for the game (2 to 10): ");
 		int targetNumberSize = input.nextInt();
+		while (targetNumberSize < 2 || targetNumberSize > 10) {
+			System.out.println("You can only enter value from 2 to 10. Please try again.");
+			targetNumberSize = input.nextInt();
+		}
+		
 		int[] userGuessArray = new int[targetNumberSize];
 		int[] targetNumber = new int[targetNumberSize];
 		for (int i = 0; i < targetNumberSize; i++) {
@@ -41,7 +46,7 @@ public class GuessTheNumber {
 			for (int j = 0; j < targetNumberSize; j++) {
 				if (numberToAdd == targetNumber[j]) {
 					numberToAdd = (int) (Math.random() * 10);
-					j = 0;
+					j = -1;
 				}
 			}
 			targetNumber[i] = numberToAdd;
@@ -65,7 +70,25 @@ public class GuessTheNumber {
 			}
 			
 			System.out.print("Enter your guess (" + targetNumberSize + " numbers): ");
-			int userGuess = input.nextInt();
+			int inputGuess = input.nextInt();
+			int userGuess = inputGuess;
+			
+			// Validate guess input length
+			int inputGuessSize = 0;
+			while(inputGuess > 0) {
+				inputGuessSize++;
+				inputGuess /= 10;
+			}	
+			while(inputGuessSize != targetNumberSize) {
+				System.out.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");
+				inputGuess = input.nextInt();
+				userGuess = inputGuess;
+				inputGuessSize = 0;
+				while(inputGuess > 0) {
+					inputGuessSize++;
+					inputGuess /= 10;
+				}				
+			}
 			guesses[guessCounter] = userGuess;
 			
 			// Convert user input into array
@@ -76,6 +99,7 @@ public class GuessTheNumber {
 				j--;
 			}
 			
+			guesses[guessCounter] = userGuess;
 			// Check user input
 			int correctPlace = 0;
 			int correctNumber = 0;
