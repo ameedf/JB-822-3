@@ -99,7 +99,6 @@ public class GuessTheNumber {
 				j--;
 			}
 			
-			guesses[guessCounter] = userGuess;
 			// Check user input
 			int correctPlace = 0;
 			int correctNumber = 0;
