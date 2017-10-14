@@ -44,7 +44,7 @@ public class GuessTheNumber {
 		for (int i = 0; i < targetNumberSize; i++) {
 			int digitToAdd = (int) (Math.random() * 10);
 			for (int j = 0; j < targetNumberSize; j++) {
-				if (digitToAdd == targetNumber[j]) {
+				if (digitToAdd == targetNumber[j] || (digitToAdd == 0 && j == 0)) {
 					digitToAdd = (int) (Math.random() * 10);
 					j = -1;
 				}
@@ -64,8 +64,7 @@ public class GuessTheNumber {
 				System.out.println("Before new guess, here are your previous trials: ");
 				for (int i = 0; i < trialIndex; i++) {
 					System.out.print("Trial number " + (i + 1) + ": " + trials[i] + ". ");
-					System.out.println(trialsCorrectNumbers[i] + " correct numbers, " + trialsCorrectPlaces[i]
-							+ " of them at the right place!");
+					System.out.println(trialsCorrectNumbers[i] + " correct numbers, " + trialsCorrectPlaces[i] + " of them at the right place!");
 				}
 			}
 
@@ -84,8 +83,7 @@ public class GuessTheNumber {
 					inputGuess /= 10;
 				}
 				if (inputGuessSize != targetNumberSize) {
-					System.out
-							.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");
+					System.out.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");
 					inputGuessSize = 0;
 				}
 			}
@@ -115,12 +113,10 @@ public class GuessTheNumber {
 				}
 			}
 			if (correctPlace == targetNumberSize) {
-				System.out.println(
-						"This is correct number! Congratulations! It took you " + (trialIndex + 1) + " trials to guess!");
+				System.out.println("This is correct number! Congratulations! It took you " + (trialIndex + 1) + " trials to guess!");
 				guessed = true;
 			} else {
-				System.out.println("You have guessed " + correctNumber + " numbers, " + correctPlace
-						+ " of them at the right place!");
+				System.out.println("You have guessed " + correctNumber + " numbers, " + correctPlace + " of them at the right place!");
 				trialIndex++;
 			}
 		} // End of game loop
