@@ -69,10 +69,6 @@ public class GuessTheNumber {
 				}
 			}
 			
-			System.out.print("Enter your guess (" + targetNumberSize + " numbers): ");
-			int inputGuess = input.nextInt();
-			int userGuess = inputGuess;
-			
 			// Get user guess and validate its size
 			int inputGuessSize = 0;
 			int inputGuess;
