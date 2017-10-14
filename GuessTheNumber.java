@@ -73,21 +73,24 @@ public class GuessTheNumber {
 			int inputGuess = input.nextInt();
 			int userGuess = inputGuess;
 			
-			// Validate guess input length
+			// Get user guess and validate its size
 			int inputGuessSize = 0;
-			while(inputGuess > 0) {
-				inputGuessSize++;
-				inputGuess /= 10;
-			}	
+			int inputGuess;
+			int userGuess = 0;
+			
 			while(inputGuessSize != targetNumberSize) {
-				System.out.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");
+				System.out.print("Enter your guess (" + targetNumberSize + " numbers): ");
 				inputGuess = input.nextInt();
 				userGuess = inputGuess;
-				inputGuessSize = 0;
+				
 				while(inputGuess > 0) {
 					inputGuessSize++;
 					inputGuess /= 10;
-				}				
+				}
+				if (inputGuessSize != targetNumberSize) {
+					System.out.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");					
+					inputGuessSize = 0;
+				}
 			}
 			guesses[guessCounter] = userGuess;
 			
@@ -99,7 +102,7 @@ public class GuessTheNumber {
 				j--;
 			}
 			
-			// Check user input
+			// Check user guess
 			int correctPlace = 0;
 			int correctNumber = 0;
 			for (int i = 0; i < targetNumber.length; i++) {
