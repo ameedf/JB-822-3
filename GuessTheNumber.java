@@ -21,19 +21,24 @@
  * "There are X players with better scores") or if he's at the top of the table.
  * Before the next game, the top 3 scores (which are greater than 0) will be printed
  */
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class GuessTheNumber {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-
+		Random random = new Random();
+		
+		// Get and validate target number size from user input
 		System.out.print("Please enter number of digits for the game (2 to 10): ");
 		int targetNumberSize = input.nextInt();
 		while (targetNumberSize < 2 || targetNumberSize > 10) {
 			System.out.println("You can only enter value from 2 to 10. Please try again.");
 			targetNumberSize = input.nextInt();
 		}
-
+		
+		// Initialize game arrays
 		int[] userGuessArray = new int[targetNumberSize];
 		int[] targetNumber = new int[targetNumberSize];
 		for (int i = 0; i < targetNumberSize; i++) {
@@ -42,29 +47,33 @@ public class GuessTheNumber {
 
 		// Generate target number
 		for (int i = 0; i < targetNumberSize; i++) {
-			int digitToAdd = (int) (Math.random() * 10);
-			for (int j = 0; j < targetNumberSize; j++) {
+			int digitToAdd = random.nextInt(10);
+			int j = 0;
+			while (j < i) {
 				if (digitToAdd == targetNumber[j] || (digitToAdd == 0 && j == 0)) {
-					digitToAdd = (int) (Math.random() * 10);
+					digitToAdd = random.nextInt(10);
 					j = -1;
 				}
+				j++;
 			}
 			targetNumber[i] = digitToAdd;
 		}
-
-		// Start of game loop
+		
+		// Initialize arrays for storing trials
 		boolean guessed = false;
 		int[] trials = new int[100];
 		int[] trialsCorrectPlaces = new int[100];
 		int[] trialsCorrectNumbers = new int[100];
 		int trialIndex = 0;
 
+		// Start of game loop
 		while (!guessed) {
 			if (trialIndex != 0) {
-				System.out.println("Before new guess, here are your previous trials: ");
+				System.out.println("Before new guess, here are your previouse trials: ");
 				for (int i = 0; i < trialIndex; i++) {
 					System.out.print("Trial number " + (i + 1) + ": " + trials[i] + ". ");
-					System.out.println(trialsCorrectNumbers[i] + " correct numbers, " + trialsCorrectPlaces[i] + " of them at the right place!");
+					System.out.println(trialsCorrectNumbers[i] + " correct numbers, " + trialsCorrectPlaces[i]
+							+ " of them at the right place!");
 				}
 			}
 
@@ -83,7 +92,8 @@ public class GuessTheNumber {
 					inputGuess /= 10;
 				}
 				if (inputGuessSize != targetNumberSize) {
-					System.out.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");
+					System.out
+							.println("Your guess should consist of " + targetNumberSize + " digits! Please try again.");
 					inputGuessSize = 0;
 				}
 			}
@@ -112,13 +122,19 @@ public class GuessTheNumber {
 					}
 				}
 			}
+			
+			// Print result
 			if (correctPlace == targetNumberSize) {
-				System.out.println("This is correct number! Congratulations! It took you " + (trialIndex + 1) + " trials to guess!");
+				System.out.println(
+						"This is correct number! Congratulations! It took you " + (trialIndex + 1) + " trials to guess!");
 				guessed = true;
 			} else {
-				System.out.println("You have guessed " + correctNumber + " numbers, " + correctPlace + " of them at the right place!");
+				System.out.println("You have guessed " + correctNumber + " numbers, " + correctPlace
+						+ " of them at the right place!");
 				trialIndex++;
 			}
 		} // End of game loop
+		
+		input.close();
 	}
 }
