@@ -29,8 +29,6 @@ public class Grades {
         short grade = 0;
         byte indexHighest = 0;
         byte indexLowest = 0;
-        byte highest = 0;
-        byte lowest = 100;
         float sum = 0;
 
         System.out.println("Please enter the grades (each in a new line) - ");
@@ -45,12 +43,10 @@ public class Grades {
                 grade = input.nextShort();
             }
 
-                if (highest < grade) {
-                    highest = (byte)grade;
+                if (studentsArray[indexHighest] < grade) {
                     indexHighest = i;
                 }
-                if (lowest > grade) {
-                    lowest = (byte)grade;
+                if (studentsArray[indexLowest] > grade) {
                     indexLowest = i;
                 }
                 studentsArray[i] = (byte)grade;
@@ -62,8 +58,8 @@ public class Grades {
         indexHighest++;
         indexLowest++;
 
-        System.out.println("Student #" + indexHighest + " got the highest grade of " + highest);
-        System.out.println("Student #" + indexLowest + " got the lowest grade of " + lowest);
+        System.out.println("Student #" + indexHighest + " got the highest grade of " + studentsArray[indexHighest-1]);
+        System.out.println("Student #" + indexLowest + " got the lowest grade of " + studentsArray[indexLowest-1]);
         System.out.println("Average of all grades is: " + sum/numOfStudents);
     }
 }
