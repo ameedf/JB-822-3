@@ -27,7 +27,7 @@
 
 import java.util.Scanner;
 
-public class PalindromeNoArr {
+public class Palindrome {
 	public static void main(String[] args) {
 		int PalindromeNum, PalindromeLen = 0;
 		Scanner in = new Scanner(System.in);
@@ -45,6 +45,10 @@ public class PalindromeNoArr {
 		String fPart = "";
 		String sPart = "";
 
+		if (num == 0) {
+			System.out.println("\n Given number Zero, is a Palindrome by difinition!");
+		}
+
 		while (num > 0) {
 			remainder = num % 10;
 			reversedPalindromeNum = reversedPalindromeNum * 10 + remainder;
@@ -55,14 +59,14 @@ public class PalindromeNoArr {
 		if (PalindromeNum == reversedPalindromeNum) {
 			num = PalindromeNum;
 			int i = PalindromeLen;
-			
+
 			for (int next = 0; next < PalindromeLen / 2; next++) {
 				remainder = num % 10;
 				fPart += " " + remainder;
 				sPart = remainder + " " + sPart;
 				num = num / 10;
 			}
-			
+
 			// Handle odd length
 			if (PalindromeLen % 2 == 1) {
 				fPart += " " + num % 10;
