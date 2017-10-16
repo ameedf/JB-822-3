@@ -33,9 +33,9 @@ public class Palindrome {
 		Scanner in = new Scanner(System.in);
 
 		do {
-			System.out.print("Enter number from 1 to 1,000,000,000:");
+			System.out.print("Enter number from 0 to 1,000,000,000:");
 			PalindromeNum = in.nextInt();
-		} while (PalindromeNum < 1 || PalindromeNum > 1000000000);
+		} while (PalindromeNum < 0 || PalindromeNum > 1000000000);
 
 		int num, remainder;
 		int reversedPalindromeNum = 0;
@@ -47,6 +47,7 @@ public class Palindrome {
 
 		if (num == 0) {
 			System.out.println("\n Given number Zero, is a Palindrome by difinition!");
+			return;
 		}
 
 		while (num > 0) {
