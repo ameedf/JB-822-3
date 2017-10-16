@@ -1,3 +1,4 @@
+
 /**
  * A Palindrome is a sequence of characters which reads the same backward as forward.
  * Examples: anna, civic, kayak, level, madam,...
@@ -23,8 +24,64 @@
  *    First part = 9 8 4 3      (with a space between each 2 characters)
  *    Second part = 3 4 8 9     (with a space between each 2 characters)
  */
+
+import java.util.Scanner;
+
 public class Palindrome {
-    public static void main(String[] args) {
-        // Your code goes here :)
-    }
+	public static void main(String[] args) {
+		int PalindromeNum, PalindromeLen = 0;
+		Scanner in = new Scanner(System.in);
+
+		do {
+			System.out.print("Enter number from 0 to 1,000,000,000:");
+			PalindromeNum = in.nextInt();
+		} while (PalindromeNum < 0 || PalindromeNum > 1000000000);
+
+		int num, remainder;
+		int reversedPalindromeNum = 0;
+		num = PalindromeNum;
+
+		String outMessage = "";
+		String fPart = "";
+		String sPart = "";
+
+		if (num == 0) {
+			System.out.println("\n Given number is Zero and it's a Palindrome by difinition!");
+			return;
+		}
+
+		while (num > 0) {
+			remainder = num % 10;
+			reversedPalindromeNum = reversedPalindromeNum * 10 + remainder;
+			num = num / 10;
+			PalindromeLen++;
+		}
+
+		if (PalindromeNum == reversedPalindromeNum) {
+			num = PalindromeNum;
+			int i = PalindromeLen;
+
+			for (int next = 0; next < PalindromeLen / 2; next++) {
+				remainder = num % 10;
+				fPart += " " + remainder;
+				sPart = remainder + " " + sPart;
+				num = num / 10;
+			}
+
+			// Handle odd length
+			if (PalindromeLen % 2 == 1) {
+				fPart += " " + num % 10;
+				sPart = num % 10 + " " + sPart;
+			}
+
+			outMessage += "\n Given number " + PalindromeNum + " is a Palindrome!";
+			outMessage += "\n Output: size =  " + PalindromeLen;
+			outMessage += "\n First part = " + fPart;
+			outMessage += "\n Second part = " + sPart;
+			System.out.println(outMessage);
+
+		} else {
+			System.out.println("\n Given number " + PalindromeNum + " is NOT a Palindrome!");
+		}
+	}
 }
