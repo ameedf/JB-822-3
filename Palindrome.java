@@ -46,7 +46,7 @@ public class Palindrome {
 		String sPart = "";
 
 		if (num == 0) {
-			System.out.println("\n Given number Zero, is a Palindrome by difinition!");
+			System.out.println("\n Given number is Zero and it's a Palindrome by difinition!");
 			return;
 		}
 
