@@ -123,6 +123,7 @@ public class RotationCheck {
 			rotationsCount++;
 		}
 		
+		
 		//Print info message
 		if(numberEqual) {
 			System.out.println("The number " + firstNumber + " can be rotated "+rotationsCount+" time"+(rotationsCount>1?"s":"")+" to get the number " + secondNumber + "!");
