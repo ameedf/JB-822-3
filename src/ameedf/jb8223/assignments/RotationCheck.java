@@ -1,5 +1,7 @@
 package ameedf.jb8223.assignments;
 
+import java.util.Scanner;
+
 /**
  * INTRODUCTION:
  * Take a look at this number which is composed from 4 digits
@@ -42,6 +44,91 @@ package ameedf.jb8223.assignments;
  */
 public class RotationCheck {
     public static void main(String[] args) {
-        // TODO: enter your code here :)
+		Scanner in = new Scanner(System.in);
+		int firstNumber = 0, secondNumber = 0;
+
+		//Get input from the user.
+		do {
+			System.out.print("Enter firstNumber [0 to 1,000,000,000]:");
+			firstNumber = in.nextInt();
+		} while (firstNumber < 0 || firstNumber > 1000000000);
+
+		do {
+			System.out.print("Enter secondNumber [0 to 1,000,000,000 and not equal to "+firstNumber+" ]:");
+			secondNumber = in.nextInt();
+		} while (secondNumber < 0 || secondNumber > 1000000000 || firstNumber == secondNumber);
+		
+		in.close();
+		
+		//Calculate the length of the numbers
+		int firstNumberLenght = 0, tempfirstNumber = firstNumber;
+		while (tempfirstNumber > 0) {
+			tempfirstNumber = tempfirstNumber / 10;
+			firstNumberLenght++;
+		}
+
+		int secondNumberLenght = 0, tempsecondNumber = secondNumber;
+		while (tempsecondNumber > 0) {
+			tempsecondNumber = tempsecondNumber / 10;
+			secondNumberLenght++;
+		}
+		
+		//Check the length of the numbers, if not equal then exit. 
+		if(firstNumberLenght != secondNumberLenght) {
+			System.out.println("We cannot get from "+firstNumber+" to "+secondNumber+" by performing any number of rotations!");
+			return;
+		}
+		
+		//Init arrays for numbers by required length   
+		int[] firstNumberArray = new int[firstNumberLenght];
+		int[] secondNumberArray = new int[firstNumberLenght];
+		
+		tempfirstNumber = firstNumber;
+		tempsecondNumber = secondNumber;
+
+		//Move from integers to arrays
+		for (int i = firstNumberLenght; i > 0 ; i--) {
+			firstNumberArray[i-1] = tempfirstNumber % 10;
+			tempfirstNumber = tempfirstNumber / 10;
+			
+			secondNumberArray[i-1] = tempsecondNumber % 10;
+			tempsecondNumber = tempsecondNumber / 10;
+		}
+		
+		//Declare needed variables
+		int rotationsCount = 0;
+		boolean numberEqual = false;
+		
+		//Check the numbers for equals
+		while( (rotationsCount <= firstNumberLenght -1 ) && !numberEqual) {
+			//Rotate last digit in first number
+			int buf = 0;
+			for (int i = firstNumberLenght-1; i > 0 ; i--) {
+				buf = firstNumberArray[i];
+				firstNumberArray[i] = firstNumberArray[i-1];
+				firstNumberArray[i-1] = buf;
+			}
+			
+			//Check if numbers equals
+			boolean digitEqual = true;
+			for (int i = 0; i < secondNumberArray.length && digitEqual; i++) {
+				if(secondNumberArray[i]!=firstNumberArray[i]) {
+					digitEqual = false;
+				}
+			}
+			
+			if(digitEqual) {
+				numberEqual = true;
+			}
+			rotationsCount++;
+		}
+		
+		//Print info message
+		if(numberEqual) {
+			System.out.println("The number " + firstNumber + " can be rotated "+rotationsCount+" time"+(rotationsCount>1?"s":"")+" to get the number " + secondNumber + "!");
+		} else {
+			System.out.println("We cannot get from " + firstNumber + " to " + secondNumber + " by performing any number of rotations!");
+		}
+   
     }
 }
