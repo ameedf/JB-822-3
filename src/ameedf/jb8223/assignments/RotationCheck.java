@@ -65,6 +65,8 @@ public class RotationCheck {
             secondNum = input.nextLong();
         }
 
+        input.close();
+
         // if any of the numbers is zero, print & exit
         if (firstNum == 0 || secondNum == 0) {
             System.out.println("We cannot get from " + firstNum + " to " + secondNum +
@@ -80,7 +82,6 @@ public class RotationCheck {
             firstNumHolder /= 10;
             numOfDigits++;
         }
-
 
         // enter the first number into firstNumArray
         byte[] firstNumArray = new byte[numOfDigits];
