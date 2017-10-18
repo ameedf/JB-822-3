@@ -96,7 +96,7 @@ public class RotationCheck {
 		// Check the numbers for equals
 		while ((rotationsCount <= firstNumberLength - 1) && !numberEqual) {
 
-			// Shift digit in first number
+			// Shift digit in first number 
 			int buf = firstNumberArray[firstNumberLength - 1];
 			for (int i = firstNumberLength - 1; i > 0; i--) {
 				firstNumberArray[i] = firstNumberArray[i - 1];
