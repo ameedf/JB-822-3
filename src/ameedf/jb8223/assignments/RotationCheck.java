@@ -1,4 +1,6 @@
-package ameedf.jb8223.assignments;
+package src.ameedf.jb8223.assignments;
+
+import java.util.Scanner;
 
 /**
  * INTRODUCTION:
@@ -42,6 +44,81 @@ package ameedf.jb8223.assignments;
  */
 public class RotationCheck {
     public static void main(String[] args) {
-        // TODO: enter your code here :)
+
+        Scanner input = new Scanner(System.in);
+
+        // get the numbers, validate input
+        System.out.println("Please enter 2 numbers (not identical, in the range of 0..1,000,000,000)");
+        System.out.printf("First number: ");
+        long firstNum = input.nextLong();
+
+        while (firstNum < 0 || firstNum > 1000000000) {
+            System.out.printf("Enter a valid first number: ");
+            firstNum = input.nextLong();
+        }
+
+        System.out.printf("Second number: ");
+        long secondNum = input.nextLong();
+
+        while (secondNum == firstNum || secondNum < 0 || secondNum > 1000000000) {
+            System.out.printf("Enter a valid & different second number: ");
+            secondNum = input.nextLong();
+        }
+
+        input.close();
+
+        // if any of the numbers is zero, print & exit
+        if (firstNum == 0 || secondNum == 0) {
+            System.out.println("We cannot get from " + firstNum + " to " + secondNum +
+                    " by performing any number of rotations");
+            return;
+        }
+
+        // if not, find out the first number's num of digits
+        long firstNumHolder = firstNum;
+        byte numOfDigits = 0;
+
+        while (firstNumHolder > 0) {
+            firstNumHolder /= 10;
+            numOfDigits++;
+        }
+
+        // enter the first number into firstNumArray
+        byte[] firstNumArray = new byte[numOfDigits];
+        firstNumHolder = firstNum;
+        for (int i = firstNumArray.length-1 ; i >= 0 ; i--) {
+            firstNumArray[i] = (byte)(firstNumHolder % 10);
+            firstNumHolder /= 10;
+        }
+
+        // enter the first num into another helper shiftedNumArray, shift the numbers in it, count rotations
+        byte[] shiftedNumArray = new byte[numOfDigits];
+        byte numOfRotations = 0;
+
+        /* we will stop shifting digits when we're back to normal 1st number, or when we have numbers parity
+           in each rotation we'll move the last digit to be the first and re-build the shifted number
+           firstNumArray will now be used to remember the state of shiftedNumArray after each rotation */
+
+        while (numOfRotations < numOfDigits && firstNumHolder != secondNum){
+            numOfRotations++;
+            shiftedNumArray[0] = firstNumArray[firstNumArray.length - 1];
+            firstNumHolder = shiftedNumArray[0];
+
+            for (int i = 1; i < firstNumArray.length; i++) {
+                shiftedNumArray[i] = firstNumArray[i - 1];
+                firstNumHolder = firstNumHolder * 10 + shiftedNumArray[i];
+            }
+            firstNumArray = shiftedNumArray.clone();
+        }
+
+        //if the numbers match => print number of rotations, if not => print failure to match
+        if (firstNumHolder == secondNum) {
+            System.out.println("The number " + firstNum + " can be rotated " +
+                    numOfRotations + " time(s) to get the number " + secondNum);
+        }
+        else {
+            System.out.println("We cannot get from " + firstNum + " to " + secondNum +
+                    " by performing any number of rotations");
+        }
     }
 }
