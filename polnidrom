@@ -1,0 +1,57 @@
+Scanner input = new Scanner(System.in);
+	System.out.println(" please enter  number betwen 0-1,000,000,000");
+
+	// input the number
+	int num = input.nextInt();
+	int a = 1;
+	int size, temp, i;// i = index
+	int[] random;// to check to if polnidrom
+	random = new int[9];// the size of the big number
+
+	while (a > 0) {// if the number is not in the range.
+		// to check the input if corect
+		if (num > 0 && num < 1000000000) {
+			temp = num;
+			size = 0;
+
+			while (temp > 0) {// to check the size of the number and put in arr
+				random[size] = temp % 10;
+				temp = temp / 10;
+				size++;
+			}
+			// run the number to check
+			for (temp = 0, i = 0; i < size; i++) {
+				temp = (temp * 10) + random[i];
+			}
+
+			if (temp == num) {
+				// if its polindrom
+				System.out.println("input:" + num);
+				System.out.println("size = " + size);
+				System.out.print(" first part: ");
+				int size2 = size % 2;
+
+				for (i = 0; i < (size) / 2 + size2; i++) {
+					System.out.print(" " + random[i]);
+				}
+				System.out.println(" ");
+				System.out.print("secound part: ");
+				for (i = (size) / 2; i < size; i++) {
+					System.out.print(random[i] + " ");
+				}
+				System.out.println("\n Please enter next number ");
+				num = input.nextInt();
+			}
+			// if its not polindrom
+			else {
+				a = 0;
+				break;
+			}
+
+		}
+		System.out.println(" please enter valid number");
+		num = input.nextInt();
+	}
+	System.out.println("the number is not palindrom.");
+	input.close();// to close the get numbers
+}
