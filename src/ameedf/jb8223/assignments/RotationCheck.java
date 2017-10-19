@@ -99,7 +99,7 @@ public class RotationCheck {
            in each rotation we'll move the last digit to be the first and re-build the shifted number
            firstNumArray will now be used to remember the state of shiftedNumArray after each rotation */
 
-        while (numOfRotations <= numOfDigits && firstNumHolder != secondNum){
+        while (numOfRotations < numOfDigits && firstNumHolder != secondNum){
             numOfRotations++;
             shiftedNumArray[0] = firstNumArray[firstNumArray.length - 1];
             firstNumHolder = shiftedNumArray[0];
