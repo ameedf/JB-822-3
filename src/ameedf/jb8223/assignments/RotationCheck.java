@@ -40,8 +40,110 @@ package ameedf.jb8223.assignments;
  *
  * Good luck !
  */
+
+import java.util.Scanner;
+import java.util.Arrays;
+
 public class RotationCheck {
     public static void main(String[] args) {
-        // TODO: enter your code here :)
+        		Scanner input = new Scanner(System.in);
+		System.out.println("please enter a number between 0 and 1,000,000,000");
+		int firstNo = input.nextInt();
+
+		while (firstNo < 0 || firstNo > 1000000000) {
+			System.out.println("please enter a valid number");
+			firstNo = input.nextInt();
+		}
+		
+			System.out.println("please enter another number between 0 and 1,000,000,000");
+			int secondNo = input.nextInt();
+			
+			if (secondNo == firstNo){
+				System.out.println("please enter a different number");
+				secondNo = input.nextInt();
+			}
+
+			while (secondNo < 0 || secondNo > 1000000000) {
+				System.out.println("please enter a valid number");
+				secondNo = input.nextInt();
+			}
+			
+        // Calculates first number length
+			byte[] digits;
+	        
+	            int number1Length = 0;
+	            int temp = firstNo;
+	            while (temp != 0) {
+	                temp = temp / 10;
+	                number1Length++;
+	            }
+	         // Calculates second number length
+	            byte[] digits2;
+	            int number2Length = 0;
+	            int temp1 = secondNo;
+	            while (temp1 != 0) {
+	                temp1 = temp1 / 10;
+	                number2Length++;
+	            }
+	            
+	          /*  System.out.println(number1Length);
+	            System.out.println(number2Length); */
+	            
+	            // split first number to digits
+	            digits = new byte[number1Length];
+	            temp = firstNo;
+	            for (int i = 0; i < number1Length; i++) {
+	                digits[i] = (byte)(temp % 10);
+	                temp /= 10;
+	            }
+	            
+	            // split second number to digits
+	            digits2 = new byte[number2Length];
+	            temp = secondNo;
+	            for (int i = 0; i < number2Length; i++) {
+	                digits2[i] = (byte)(temp % 10);
+	                temp /= 10;
+	            }
+	            
+	          /*  System.out.println(Arrays.toString(digits));
+	            System.out.println(Arrays.toString(digits2)); */
+	            
+	            // check if the number of digits is equal
+	            if (digits.length != digits2.length) {
+	            	System.out.println("We cannot get from " + firstNo + " to " + secondNo + " by performing any number of rotations.");
+	                }
+	            
+	         // Declare the variables we need
+	            int rotationsNo = 0;
+	            boolean variation = false;
+	           
+	          // Checks if the number of digits is equal in both numbers
+	           while ((rotationsNo <= number1Length - 1) && !variation) {
+	        
+	          // Shift digits in first number 
+	          byte timesToShift = digits[number1Length - 1];
+	          for (int i = number1Length - 1; i > 0; i--) {
+	          digits[i] = digits[i - 1];
+	          }
+	          digits[0] = timesToShift;
+	          
+	          // Check if one of the variations equals the other number
+	  
+	         variation = true;
+	       for (int i = 0; i < digits2.length && variation; i++) {
+	       if (digits2[i] != digits[i]) {
+	       variation = false;
+	      }
+	      }
+	     rotationsNo++;
+	      }
+	           
+	           
+	            	
+	           if (variation) {
+	        	   System.out.println("\nThe number " + firstNo + " can be rotated " + rotationsNo + " times" + (rotationsNo > 1 ? "s" : "") + " to get the number " + secondNo + "!");
+	        	   } else {
+	        	   System.out.println("\nWe cannot get from " + firstNo + " to " + secondNo + " by performing any number of rotations!");
+	        	   }      
     }
 }
