@@ -43,5 +43,89 @@ package ameedf.jb8223.assignments;
 public class RotationCheck {
     public static void main(String[] args) {
         // TODO: enter your code here :)
+    Scanner input = new Scanner(System.in);
+		int maxvalue = 1_000_000_000;
+		System.out.println("Pls enter 2 numbers in range of 0 - " + maxvalue + " - ");
+		System.out.print("Enter Number #1 : ");
+
+		// Checking if number #1 is in range -
+		int Num1 = input.nextInt();
+		while (Num1 < 0 || Num1 > maxvalue) {
+			System.out.println("Number is out of range ! (0  " + maxvalue + " )");
+			System.out.print("Enter Number #1 : ");
+			Num1 = input.nextInt();
+		}
+		System.out.print("Enter Number #2 : ");
+		int Num2 = input.nextInt();
+		// Checking if number #2 is in range -
+		while (Num2 < 0 || Num2 > maxvalue) {
+			System.out.println("Number is out of range ! (0 - " + maxvalue + " )");
+			System.out.print("Enter Number #2 : ");
+			Num2 = input.nextInt();
+		}
+		// Checking if number #1 and number #2 are identical + if number #2 is in range
+		// -
+		// is there a better way to write this condition ??
+		while (Num1 == Num2) {
+			System.out.println("The Numbers cannot be identical");
+			System.out.print("Enter Number #2 : ");
+			Num2 = input.nextInt();
+			while (Num2 < 0 || Num2 > maxvalue) {
+				System.out.println("Number is out of range ! (0 - " + maxvalue + " )");
+				System.out.print("Enter Number #2 : ");
+				Num2 = input.nextInt();
+			}
+
+		}
+		// Length of number #1
+		int tempNum1, LengthNum1 = 0;
+		tempNum1 = Num1;
+		while (tempNum1 > 0) {
+			tempNum1 /= 10;
+			LengthNum1++;
+		}
+		// Length of number #2
+		int tempNum2, LengthNum2 = 0;
+		tempNum2 = Num2;
+		while (tempNum2 > 0) {
+			tempNum2 /= 10;
+			LengthNum2++;
+		}
+		// Create an Array for Number#1 + putting each digit in the array#1
+		int LengthTemp1 = LengthNum1;
+		int DigitsNum1 = 0;
+		int[] arraynum1 = new int[LengthNum1];
+		for (int i = 0; i < LengthNum1; i++) {
+			DigitsNum1 = Num1 % 10;
+			arraynum1[LengthTemp1 - 1] = DigitsNum1;
+			LengthTemp1--;
+			Num1 /= 10;
+		}
+		// Create an Array for Number#2 + putting each digit in the array#2
+		int LengthTemp2 = LengthNum2;
+		int DigitsNum2 = 0;
+		int[] arraynum2 = new int[LengthNum2];
+		for (int i = 0; i < LengthNum2; i++) {
+			DigitsNum2 = Num2 % 10;
+			arraynum2[LengthTemp2 - 1] = DigitsNum2;
+			LengthTemp2--;
+			Num2 /= 10;
+		}
+		// Checking if the length of the number is equal
+		if (LengthNum1 != LengthNum2) {
+			System.out.println("The length of the numbet isn't equal - don't need to rotate & check the numbers !");
+		}
+		// Checking if the number are equal after rotating
+		else {
+			while (Num1 != Num2) {
+				for (int i = 0; i < LengthNum1 - 1; i++) {
+					int LengthNum1Temp = LengthNum1;
+					arraynum1[LengthNum1Temp - 1] = arraynum1[i];
+					LengthNum1Temp--;
+		// I Got Stuck !
+
+				}
+			}
+		}
     }
 }
