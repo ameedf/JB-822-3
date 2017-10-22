@@ -34,4 +34,79 @@ package ameedf.jb8223.assignments.hw02;
  * BONUS 2: the same functionality as in "BONUS 1" while using as few member variables / memory as possible
  */
 public class Clock {
+	private byte hours;
+	private byte minutes;
+	private byte seconds;
+	private short milliseconds;
+	
+	//C-tor initialize time to 14:07:53.980
+	public Clock() {
+        this.hours = 14;
+        this.minutes = 7;
+        this.seconds = 53;
+        this.milliseconds = 980;
+    }
+	
+	//C-tor initialize time by user input
+	public Clock(int hours, int minutes, int seconds, int milliseconds) {
+        this.hours = (byte) hours;
+        this.minutes = (byte) minutes;
+        this.seconds = (byte) seconds;
+        this.milliseconds = (byte) milliseconds;
+    }
+
+	public void addHours(int hours) {
+		if(hours > 0 && hours < 1000000000 ) {
+			this.hours = (byte) ((this.hours + hours) % 24);
+		}
+	}
+	
+	public void addMinutes(int minutes) {
+		int addToHours = 0;
+		if(minutes > 0 && minutes < 1000000000 ) {
+			if(minutes > 59) {
+				addToHours = (this.minutes + minutes) / 60;
+				addHours(addToHours);
+			}
+			this.minutes = (byte) ((this.minutes + minutes) % 60);
+		}
+	}
+	
+	public void addSeconds(int seconds) {
+		int addToMinutes = 0;
+		if(seconds > 0 && seconds < 1000000000 ) {
+			if(seconds > 59) {
+				addToMinutes = (this.seconds + seconds) / 60;
+				addMinutes(addToMinutes);
+			}
+			this.seconds = (byte) ((this.seconds + seconds) % 60);
+		}
+	}
+	
+	public void addMilliseconds(int milliseconds) {
+		int addToSeconds = 0;
+		if(milliseconds > 0 && milliseconds < 1000000000 ) {
+			if(milliseconds > 999) {
+				addToSeconds = (this.milliseconds + milliseconds) / 1000;
+				addSeconds(addToSeconds);
+			}
+			this.milliseconds = (short) ((this.milliseconds + milliseconds) % 1000);
+		}
+	}
+	
+	public void print(boolean is12) {
+		String postfix = "";
+		int hoursToShow = hours;
+		if(is12) {
+			if(hours<=12) {
+				postfix = "PM";
+			} else {
+				postfix = "AM";
+				hoursToShow -= 12;
+			}
+		}
+		System.out.println("\n"+(hoursToShow<10? "0"+hoursToShow:hoursToShow)+":"+(minutes<10? "0"+minutes:minutes)+":"+(seconds<10? "0"+seconds:seconds)+"."
+		+(milliseconds<10? "00"+milliseconds:(milliseconds<100? "0"+milliseconds:milliseconds))+" "+postfix);
+	}
+
 }
