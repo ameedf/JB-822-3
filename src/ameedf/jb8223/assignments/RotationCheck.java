@@ -27,7 +27,7 @@ package ameedf.jb8223.assignments;
  * 'The number 1439 can be rotated 2 time(s) to get the number 3914'.
  * Example #2: if the first number is 41412 and the second number is 14124, the program will print
  * 'The number 41412 can be rotated 4 time(s) to get the number 14124'.
- * Example #2: if the first number is 312 and the second number is 321, the program will print
+ * Example #3: if the first number is 312 and the second number is 321, the program will print
  * 'We cannot get from 312 to 321 by performing any number of rotations'.
  *
  * 1. The only mathematical operations allowed are "/" and "%"
