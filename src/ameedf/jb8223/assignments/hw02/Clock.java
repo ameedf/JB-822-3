@@ -64,8 +64,8 @@ public class Clock {
 	public void addMinutes(int minutes) {
 		int addToHours = 0;
 		if(minutes > 0 && minutes < 1000000000 ) {
-			if(minutes > 59) {
-				addToHours = (this.minutes + minutes) / 60;
+			if(this.minutes + minutes > 59) {
+				addToHours = (this.minutes + minutes) / 60; 
 				addHours(addToHours);
 			}
 			this.minutes = (byte) ((this.minutes + minutes) % 60);
@@ -75,7 +75,7 @@ public class Clock {
 	public void addSeconds(int seconds) {
 		int addToMinutes = 0;
 		if(seconds > 0 && seconds < 1000000000 ) {
-			if(seconds > 59) {
+			if(this.seconds + seconds > 59) {
 				addToMinutes = (this.seconds + seconds) / 60;
 				addMinutes(addToMinutes);
 			}
@@ -86,7 +86,7 @@ public class Clock {
 	public void addMilliseconds(int milliseconds) {
 		int addToSeconds = 0;
 		if(milliseconds > 0 && milliseconds < 1000000000 ) {
-			if(milliseconds > 999) {
+			if(this.milliseconds + milliseconds > 999) {
 				addToSeconds = (this.milliseconds + milliseconds) / 1000;
 				addSeconds(addToSeconds);
 			}
@@ -98,10 +98,14 @@ public class Clock {
 		String postfix = "";
 		int hoursToShow = hours;
 		if(is12) {
-			if(hours<=12) {
-				postfix = "PM";
-			} else {
+			if(hours<12) {
+				//12:00 a.m. is 	00:00
+				if(hours == 0) {
+					hoursToShow = 12;
+				}
 				postfix = "AM";
+			} else {
+				postfix = "PM";
 				hoursToShow -= 12;
 			}
 		}
