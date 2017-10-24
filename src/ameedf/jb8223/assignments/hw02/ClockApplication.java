@@ -11,5 +11,8 @@ public class ClockApplication {
     		
     		clock.addMilliseconds(25);
     		clock.print(true);
+    		
+    		clock.addHours(30);
+    		clock.print(true);
     }
 }

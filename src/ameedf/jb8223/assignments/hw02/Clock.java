@@ -90,25 +90,23 @@ public class Clock {
 		String daytimeOutput = "";
 		if (format12) {
 			if (this.hours <= 12) {
-				hoursOutput = this.hours;
 				daytimeOutput = "AM";
 			} else {
-				hoursOutput = this.hours - 12;
+				hoursOutput -= 12;
 				daytimeOutput = "PM";
 			}
 		}
 		
-		// Handle prefixes for MM:SS:mmm
+		// Handle prefixes for MM:SS:sss
 		String secondsPrefix = "";
 		String minutesPrefix = "";
 		String millisecondsPrefix = "";
 		
-		// !! Refactor
 		// Handle Milliseconds prefix
 		if (milliseconds < 100) {
-			millisecondsPrefix = "0";
+			millisecondsPrefix += "0";
 			if (milliseconds < 10) {
-				millisecondsPrefix = "00";
+				millisecondsPrefix += "0";
 			}
 		}
 		
@@ -122,6 +120,7 @@ public class Clock {
 			minutesPrefix = "0";
 		}
 		
-		System.out.println(hoursOutput + ":" + minutesPrefix + this.minutes + ":" + secondsPrefix + this.seconds + ":" + millisecondsPrefix + this.milliseconds + " " + daytimeOutput);
+		System.out.println(hoursOutput + ":" + minutesPrefix + this.minutes + ":" 
+				+ secondsPrefix + this.seconds + ":" + millisecondsPrefix + this.milliseconds + " " + daytimeOutput);
 	}
 }
