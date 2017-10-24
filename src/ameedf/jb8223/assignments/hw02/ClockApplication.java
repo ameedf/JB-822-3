@@ -2,7 +2,14 @@ package ameedf.jb8223.assignments.hw02;
 
 public class ClockApplication {
     public static void main(String[] args) {
-        // If you need to test your "Clock" implementation - do it here :)
-        // You may use ANY external classes / libraries
+    		// Test main Clock class
+    		Clock clock = new Clock();
+    		clock.print(false);
+    		
+    		clock.addMinutes(123);
+    		clock.print(false);
+    		
+    		clock.addMilliseconds(25);
+    		clock.print(true);
     }
 }

@@ -1,8 +1,8 @@
 package ameedf.jb8223.assignments.hw02;
-
 /**
  * This class will represent a 24-hours clock up to micro-seconds precision (1000 millisecond = 1 second).
  * That means that it will represent hours of the form "HH:MM:SS.mmm", where
+
  * HH - represents the hours in 24 format. Range: [0-23]
  * MM - represents the minutes. Range: [0-59]
  * SS - represents the seconds. Range: [0-59]
@@ -34,4 +34,94 @@ package ameedf.jb8223.assignments.hw02;
  * BONUS 2: the same functionality as in "BONUS 1" while using as few member variables / memory as possible
  */
 public class Clock {
+	int milliseconds;
+	int seconds;
+	int minutes;
+	int hours;
+	
+	public Clock(int milliseconds, int seconds, int minutes, int hours) {
+		this.milliseconds = milliseconds;
+		this.seconds = seconds;
+		this.minutes = minutes;
+		this.hours = hours;
+	}
+	
+	public Clock() {
+		this.milliseconds = 980;
+		this.seconds = 53;
+		this.minutes = 7;
+		this.hours = 14;
+	}
+	
+	public void addMilliseconds(int ms) {
+		if (ms > 0 || ms < 1000000000) {
+			this.milliseconds = (this.milliseconds + ms) % 1000;
+			int seconds = ms / 1000;
+			this.addSeconds(seconds);
+		}
+	}
+	
+	public void addSeconds(int sec) {
+		if (sec > 0 || sec < 1000000000) {
+			this.seconds = (this.seconds + sec) % 60;
+			int minutes = sec / 60;
+			this.addMinutes(minutes);			
+		}
+	}
+	
+	public void addMinutes(int mins) {
+		if (mins > 0 || mins < 1000000000) {
+			this.minutes = (this.minutes + mins) % 60;
+			int hours = mins / 60;
+			this.addHours(hours);
+			
+		}
+	}
+	
+	public void addHours(int hrs) {
+		if (hrs > 0 || hrs < 1000000000) {
+			this.hours = (this.hours + hrs) % 24;			
+		}
+	}
+	
+	public void print(boolean format12) {
+		// Handle AM/PM format
+		int hoursOutput = this.hours;
+		String daytimeOutput = "";
+		if (format12) {
+			if (this.hours <= 12) {
+				hoursOutput = this.hours;
+				daytimeOutput = "AM";
+			} else {
+				hoursOutput = this.hours - 12;
+				daytimeOutput = "PM";
+			}
+		}
+		
+		// Handle prefixes for MM:SS:mmm
+		String secondsPrefix = "";
+		String minutesPrefix = "";
+		String millisecondsPrefix = "";
+		
+		// !! Refactor
+		// Handle Milliseconds prefix
+		if (milliseconds < 100) {
+			millisecondsPrefix = "0";
+			if (milliseconds < 10) {
+				millisecondsPrefix = "00";
+			}
+		}
+		
+		// Handle Seconds prefix
+		if (seconds < 10) {
+			secondsPrefix = "0";
+		}
+		
+		// Handle Minutes prefix
+		if (minutes < 10) {
+			minutesPrefix = "0";
+		}
+		
+		System.out.println(hoursOutput + ":" + minutesPrefix + this.minutes + ":" + secondsPrefix + this.seconds + ":" + millisecondsPrefix + this.milliseconds + " " + daytimeOutput);
+	}
 }
