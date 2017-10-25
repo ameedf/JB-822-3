@@ -6,12 +6,12 @@ package ameedf.jb8223.assignments.hw02;
 public class ClockBonus2 {
 	int milliseconds;
 	
-	public ClockBonus2(int milliseconds, int seconds, int minutes, int hours) {
-		this.milliseconds = milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000);
+	public ClockBonus2(short milliseconds, byte seconds, byte minutes, byte hours) {
+		this.milliseconds = (short) (milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000));
 	}
 	
 	public ClockBonus2() {
-		this.milliseconds = 980 + (53 * 1000) + (7 * 60 * 1000) + (14 * 60 * 60 * 1000);
+		this.milliseconds = (980 + (53 * 1000) + (7 * 60 * 1000) + (14 * 60 * 60 * 1000));
 	}
 	
 	public void addMilliseconds(int ms) {
@@ -40,10 +40,10 @@ public class ClockBonus2 {
 	}
 	
 	public void print(boolean format12) {
-		int milliseconds = this.milliseconds % 1000;
-		int seconds = (this.milliseconds / 1000) % 60;
-		int minutes = (this.milliseconds / (60 * 1000)) % 60;
-		int hours = (this.milliseconds / (60 * 60 * 1000)) % 24;
+		short milliseconds = (short) (this.milliseconds % 1000);
+		byte seconds = (byte) ((this.milliseconds / 1000) % 60);
+		byte minutes = (byte) ((this.milliseconds / (60 * 1000)) % 60);
+		byte hours = (byte) ((this.milliseconds / (60 * 60 * 1000)) % 24);
 		
 		// Handle AM/PM format
 		int hoursOutput = hours;
@@ -57,30 +57,7 @@ public class ClockBonus2 {
 			}
 		}
 		
-		// Handle prefixes for MM:SS:sss
-		String secondsPrefix = "";
-		String minutesPrefix = "";
-		String millisecondsPrefix = "";
-		
-		// Handle Milliseconds prefix
-		if (milliseconds < 100) {
-			millisecondsPrefix += "0";
-			if (milliseconds < 10) {
-				millisecondsPrefix += "0";
-			}
-		}
-		
-		// Handle Seconds prefix
-		if (seconds < 10) {
-			secondsPrefix = "0";
-		}
-		
-		// Handle Minutes prefix
-		if (minutes < 10) {
-			minutesPrefix = "0";
-		}
-		
-		System.out.println(hoursOutput + ":" + minutesPrefix + minutes + ":" 
-				+ secondsPrefix + seconds + ":" + millisecondsPrefix + milliseconds + " " + daytimeOutput);
+		System.out.println(hoursOutput + ":" + (minutes < 10 ? "0" : "") + minutes + ":" 
+				+ (seconds < 10 ? "0" : "") + seconds + ":" + (milliseconds < 100 ? (milliseconds < 10 ? "00" : "0") : "") + milliseconds + " " + daytimeOutput);
 	}
 }
