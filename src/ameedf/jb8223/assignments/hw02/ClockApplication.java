@@ -7,7 +7,7 @@ public class ClockApplication {
     		Clock clock = new Clock();
     		clock.print(false);
     		
-    		clock.addMinutes(3);
+    		clock.addMinutes(55);
     		clock.print(false);
     		
     		clock.addMilliseconds(25);

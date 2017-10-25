@@ -31,6 +31,8 @@ public class ClockBonus1 {
 	
 	public void addMilliseconds(int ms) {
 		if (ms > - 1000000000 || ms < 1000000000) {
+			int seconds = (this.milliseconds + ms) / 1000;
+			this.addSeconds(seconds);
 			if (ms < 0 && -this.milliseconds > ms % 1000) {
 				this.milliseconds = 1000 + (this.milliseconds + ms % 1000);
 				hours -= 1;
@@ -39,13 +41,13 @@ public class ClockBonus1 {
 			} else {
 				this.milliseconds = (this.milliseconds + ms) % 1000;												
 			}
-			int seconds = ms / 1000;
-			this.addSeconds(seconds);
 		}
 	}
 	
 	public void addSeconds(int sec) {
 		if (sec > - 1000000000 || sec < 1000000000) {
+			int minutes = (this.seconds + sec) / 60;
+			this.addMinutes(minutes);
 			if (sec < 0 && -this.seconds > sec % 60) {
 				this.seconds = 60 + (this.seconds + sec % 60);
 				hours -= 1;
@@ -54,13 +56,13 @@ public class ClockBonus1 {
 			} else {
 				this.seconds = (this.seconds + sec) % 60;												
 			}
-			int minutes = sec / 60;
-			this.addMinutes(minutes);
 		}
 	}
 	
 	public void addMinutes(int mins) {
 		if (mins > - 1000000000 || mins < 1000000000) {
+			int hours = (this.minutes + mins) / 60;
+			this.addHours(hours);
 			if (mins < 0 && -this.minutes > mins % 60) {
 				this.minutes = 60 + (this.minutes + mins % 60);
 				hours -= 1;
@@ -69,8 +71,6 @@ public class ClockBonus1 {
 			} else {
 				this.minutes = (this.minutes + mins) % 60;												
 			}
-			int hours = mins / 60;
-			this.addHours(hours);
 		}
 	}
 	
