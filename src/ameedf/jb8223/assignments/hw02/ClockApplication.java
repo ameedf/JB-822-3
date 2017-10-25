@@ -16,22 +16,35 @@ public class ClockApplication {
     		clock.addHours(30);
     		clock.print(false);
     		
-    		System.out.println("-------------- Clock with allowed negative parameter ---------------");
-    		
     		// Test Bonus1 class
-    		ClockBonus1 clock2 = new ClockBonus1();
-    		clock2.print(false);
+//    		System.out.println("-------------- Clock with allowed negative parameter ---------------");
+//    		ClockBonus1 clock2 = new ClockBonus1();
+//    		clock2.print(false);
+//    		
+//    		clock2.addHours(-50);
+//    		clock2.print(false);
+//    		
+//    		clock2.addSeconds(-70);
+//    		clock2.print(false);
+//    		
+//    		clock2.addMinutes(-140);
+//    		clock2.print(false);
+//    		
+//    		clock2.addMilliseconds(-2500);
+//    		clock2.print(true);
     		
-    		clock2.addHours(-50);
-    		clock2.print(false);
+    		// Test Bonus2 class
+	    	System.out.println("-------------- Basic clock ---------------");
+    		ClockBonus2 clock3 = new ClockBonus2();
+    		clock3.print(false);
     		
-    		clock2.addSeconds(-70);
-    		clock2.print(false);
+    		clock3.addMinutes(3);
+    		clock3.print(false);
     		
-    		clock2.addMinutes(-140);
-    		clock2.print(false);
+    		clock3.addMilliseconds(25);
+    		clock3.print(true);
     		
-    		clock2.addMilliseconds(-2500);
-    		clock2.print(true);
+    		clock3.addHours(30);
+    		clock3.print(false);
     }
 }
