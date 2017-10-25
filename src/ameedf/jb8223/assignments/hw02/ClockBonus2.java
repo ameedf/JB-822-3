@@ -46,7 +46,7 @@ public class ClockBonus2 {
 		byte hours = (byte) ((this.milliseconds / (60 * 60 * 1000)) % 24);
 		
 		// Handle AM/PM format
-		int hoursOutput = hours;
+		byte hoursOutput = hours;
 		String daytimeOutput = "";
 		if (format12) {
 			if (hours <= 12) {
