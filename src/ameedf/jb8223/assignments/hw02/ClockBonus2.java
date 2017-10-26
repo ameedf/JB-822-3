@@ -4,7 +4,7 @@ package ameedf.jb8223.assignments.hw02;
  * The same clock where minimum memory is occupied
  */
 public class ClockBonus2 {
-	int milliseconds;
+	private int milliseconds;
 	
 	public ClockBonus2(short milliseconds, byte seconds, byte minutes, byte hours) {
 		this.milliseconds = (short) (milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000));

@@ -4,10 +4,10 @@ package ameedf.jb8223.assignments.hw02;
  * The same clock where negative values are allowed to be added
  */
 public class ClockBonus1 {
-	int milliseconds;
-	int seconds;
-	int minutes;
-	int hours;
+	private int milliseconds;
+	private int seconds;
+	private int minutes;
+	private int hours;
 	
 	public ClockBonus1(int milliseconds, int seconds, int minutes, int hours) {
 		this.milliseconds = milliseconds;

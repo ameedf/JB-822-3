@@ -34,10 +34,10 @@ package ameedf.jb8223.assignments.hw02;
  * BONUS 2: the same functionality as in "BONUS 1" while using as few member variables / memory as possible
  */
 public class Clock {
-	int milliseconds;
-	int seconds;
-	int minutes;
-	int hours;
+	private int milliseconds;
+	private int seconds;
+	private int minutes;
+	private int hours;
 	
 	public Clock(int milliseconds, int seconds, int minutes, int hours) {
 		this.milliseconds = milliseconds;
