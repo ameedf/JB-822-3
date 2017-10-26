@@ -39,7 +39,7 @@ public class ClockBonus2 {
 		this.milliseconds += milliseconds;
 	}
 
-	public void print(boolean is12) {
+	public String toString(boolean is12) {
 		String postfix = "";
 		int tmp = this.milliseconds;
 
@@ -63,7 +63,7 @@ public class ClockBonus2 {
 				hoursToShow -= 12;
 			}
 		}
-		System.out.println("\n" + (hoursToShow < 10 ? "0" + hoursToShow : hoursToShow) + ":"
+		return("\n" + (hoursToShow < 10 ? "0" + hoursToShow : hoursToShow) + ":"
 				+ (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds) + "."
 				+ (milliseconds < 10 ? "00" + milliseconds : (milliseconds < 100 ? "0" + milliseconds : milliseconds))
 				+ " " + postfix);

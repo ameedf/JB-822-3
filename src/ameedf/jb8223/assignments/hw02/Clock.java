@@ -94,7 +94,7 @@ public class Clock {
 		}
 	}
 	
-	public void print(boolean is12) {
+	public String toString(boolean is12) {
 		String postfix = "";
 		int hoursToShow = hours;
 		if(is12) {
@@ -109,7 +109,7 @@ public class Clock {
 				hoursToShow -= 12;
 			}
 		}
-		System.out.println("\n"+(hoursToShow<10? "0"+hoursToShow:hoursToShow)+":"+(minutes<10? "0"+minutes:minutes)+":"+(seconds<10? "0"+seconds:seconds)+"."
+		return("\n"+(hoursToShow<10? "0"+hoursToShow:hoursToShow)+":"+(minutes<10? "0"+minutes:minutes)+":"+(seconds<10? "0"+seconds:seconds)+"."
 		+(milliseconds<10? "00"+milliseconds:(milliseconds<100? "0"+milliseconds:milliseconds))+" "+postfix);
 	}
 
