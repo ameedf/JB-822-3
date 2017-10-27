@@ -55,24 +55,24 @@ public class Clock {
 	
 	public void addMilliseconds(int ms) {
 		if (ms > 0 || ms < 1000000000) {
-			int seconds = (this.milliseconds + ms) / 1000;
-			this.addSeconds(seconds);
+			int secondsToAdd = (this.milliseconds + ms) / 1000;
+			this.addSeconds(secondsToAdd);
 			this.milliseconds = (this.milliseconds + ms) % 1000;
 		}
 	}
 	
 	public void addSeconds(int sec) {
 		if (sec > 0 || sec < 1000000000) {
-			int minutes = (this.seconds + sec) / 60;
-			this.addMinutes(minutes);			
+			int minutesToAdd = (this.seconds + sec) / 60;
+			this.addMinutes(minutesToAdd);			
 			this.seconds = (this.seconds + sec) % 60;
 		}
 	}
 	
 	public void addMinutes(int mins) {
 		if (mins > 0 || mins < 1000000000) {
-			int hours = (this.minutes + mins) / 60;
-			this.addHours(hours);
+			int hoursToAdd = (this.minutes + mins) / 60;
+			this.addHours(hoursToAdd);
 			this.minutes = (this.minutes + mins) % 60;
 			
 		}

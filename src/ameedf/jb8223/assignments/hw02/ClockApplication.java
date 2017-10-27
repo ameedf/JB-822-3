@@ -27,10 +27,10 @@ public class ClockApplication {
     		clock2.addHours(-50);
     		clock2.print(false);
     		
-    		clock2.addSeconds(-70);
+    		clock2.addSeconds(-10);
     		clock2.print(false);
     		
-    		clock2.addMinutes(-140);
+    		clock2.addMinutes(-70);
     		clock2.print(false);
     		
     		clock2.addMilliseconds(-2500);
