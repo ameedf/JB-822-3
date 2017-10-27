@@ -23,11 +23,10 @@ public class ClockBonus1 {
 		this.hours = 14;
 	}
 	
-	 /* Comment for addMilliseconds, addSeconds and addMinutes when working with negative parameters
-	 At all methods we handle 3 possible situations:
-	 1. If the absolute value of negative parameter bigger than class member value, we turn next value back
-	 2. If the negative parameter bigger than one turn, we use special addition operation
-	 3. All the other situations are handled by default operation (just addition of negative number) */
+ /* Comment for addMilliseconds, addSeconds and addMinutes when working with negative parameters:
+  * Default behavior can handle negative input if absolute value of the input less than value of current member variable.
+  * In the opposite case, we calculate new value by subtracting ((value + input) % 60) from 60, then shifting next time value back.
+  */
 	
 	public void addMilliseconds(int ms) {
 		if (ms > - 1000000000 || ms < 1000000000) {
