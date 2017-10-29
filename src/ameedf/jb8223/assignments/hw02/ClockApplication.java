@@ -1,99 +1,72 @@
 package src.ameedf.jb8223.assignments.hw02;
 
+import java.util.Scanner;
+
 public class ClockApplication {
     public static void main(String[] args) {
 
+        Scanner input  = new Scanner(System.in);
+        int hours;
+        int minutes;
+        int seconds;
+        int millisecs;
+
         System.out.println("This is the default clock:");
-        ClockBonus1 myClockBonus = new ClockBonus1();
-        printClock(myClockBonus);
+        ClockBonus1 myClock1 = new ClockBonus1();
+        printClock(myClock1);
 
-        System.out.println("\nThis is the base hour:");
-        ClockBonus1 myClockBonus1 = new ClockBonus1(2, 0, 0, 900);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter input for 'hours' (0..23):");
+            hours = input.nextInt();
+        } while (hours < 0 || hours > 23) ;
 
-        System.out.println("\nAdd 2 hours:");
-        myClockBonus1.addHours(2);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter input for 'minutes' (0..59):");
+            minutes = input.nextInt();
+        } while (minutes < 0 || minutes > 59) ;
 
-        System.out.println("\nAdd 4 hours:");
-        myClockBonus1.addHours(4);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter input for 'seconds' (0..59):");
+            seconds = input.nextInt();
+        } while (seconds < 0 || seconds > 59) ;
 
-        System.out.println("\nAdd 30 hours:");
-        myClockBonus1.addHours(30);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter input for 'milliseconds' (0..999):");
+            millisecs = input.nextInt();
+        } while (millisecs < 0 || millisecs > 999) ;
 
-        System.out.println("\nAdd 45 minutes:");
-        myClockBonus1.addMinutes(45);
-        printClock(myClockBonus1);
+        ClockBonus1 myClock2 = new ClockBonus1(hours, minutes, seconds, millisecs);
 
-        System.out.println("\nAdd 90 minutes (= 1.5 hours):");
-        myClockBonus1.addMinutes(90);
-        printClock(myClockBonus1);
+        System.out.println("\nThis is your base hour:");
+        printClock(myClock2);
 
-        System.out.println("\nAdd 180 minutes (= 3 hours):");
-        myClockBonus1.addMinutes(180);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter hours to add / subtract' (-1,000,000,000..1,000,000,000):");
+            hours = input.nextInt();
+        } while (hours < -1_000_000_000 || hours > 1_000_000_000) ;
+        myClock2.addHours(hours);
+        printClock(myClock2);
 
-        System.out.println("\nAdd 45 seconds:");
-        myClockBonus1.addSeconds(45);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter minutes to add / subtract' (-1,000,000,000..1,000,000,000):");
+            minutes = input.nextInt();
+        } while (minutes < -1_000_000_000 || minutes > 1_000_000_000) ;
+        myClock2.addMinutes(minutes);
+        printClock(myClock2);
 
-        System.out.println("\nAdd 90 seconds (= 1.5 minutes):");
-        myClockBonus1.addSeconds(90);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter seconds to add / subtract' (-1,000,000,000..1,000,000,000):");
+            seconds = input.nextInt();
+        } while (seconds < -1_000_000_000 || seconds > 1_000_000_000) ;
+        myClock2.addSeconds(seconds);
+        printClock(myClock2);
 
-        System.out.println("\nAdd 500 seconds (= 8 minutes, 20 seconds):");
-        myClockBonus1.addSeconds(500);
-        printClock(myClockBonus1);
-
-        System.out.println("\nAdd 750 milliseconds:");
-        myClockBonus1.addMilliseconds(750);
-        printClock(myClockBonus1);
-
-        System.out.println("\nAdd 1500 milliseconds (= 1.5 seconds):");
-        myClockBonus1.addMilliseconds(1500);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 2 hours:");
-        myClockBonus1.addHours(-2);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 90 minutes:");
-        myClockBonus1.addMinutes(-90);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 180 minutes (= 3 hours):");
-        myClockBonus1.addMinutes(-180);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 1510 minutes (= 1 day, 1 hour, 10 minutes):");
-        myClockBonus1.addMinutes(-1510);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 30 seconds:");
-        myClockBonus1.addSeconds(-30);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 90 seconds:");
-        myClockBonus1.addSeconds(-90);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 3666 seconds (= 1 hour, 1 minute, 6 seconds):");
-        myClockBonus1.addSeconds(-3666);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 30 milliseconds:");
-        myClockBonus1.addMilliseconds(-30);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 1000 milliseconds (= 1 second):");
-        myClockBonus1.addMilliseconds(-1000);
-        printClock(myClockBonus1);
-
-        System.out.println("\nSubtract 3,600,020 milliseconds (= 1 hour, 20 millisecs):");
-        myClockBonus1.addMilliseconds(-3600020);
-        printClock(myClockBonus1);
+        do {
+            System.out.println("Please enter milliseconds to add / subtract' (-1,000,000,000..1,000,000,000):");
+            millisecs = input.nextInt();
+        } while (millisecs < -1_000_000_000 || millisecs > 1_000_000_000) ;
+        myClock2.addMilliseconds(millisecs);
+        printClock(myClock2);
     }
 
         private static void printClock(ClockBonus1 clock) {

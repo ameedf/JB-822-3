@@ -40,8 +40,8 @@ public class Clock {
     private int seconds;
     private int milliseconds;
 
-    private final int minValueAllowed = 0;
-    private final int maxValueAllowed = 1_000_000_000;
+    private static final int minValueAllowed = 0;
+    private static final int maxValueAllowed = 1_000_000_000;
 
     // 1st constructor, initializes the clock to 14:07:53.980
     public Clock() {
@@ -62,78 +62,88 @@ public class Clock {
     // addHours - with a single parameter which represents the number of hours to add.
     public void addHours(int hoursToAdd) {
         if (hoursToAdd >= minValueAllowed && hoursToAdd <= maxValueAllowed) {
-                this.hours = (this.hours + hoursToAdd) % 24;
+            this.hours = (this.hours + hoursToAdd) % 24;
         }
     }
 
     // addMinutes - with a single parameter which represents the number of minutes to add.
     public void addMinutes(int minutesToAdd) {
         if (minutesToAdd >= minValueAllowed && minutesToAdd <= maxValueAllowed) {
-                addHours(minutesToAdd / 60);
-                this.minutes = (this.minutes + minutesToAdd) % 60;
+            if (this.minutes + minutesToAdd > 59) {
+                addHours((this.minutes + minutesToAdd) / 60);
+            }
+            this.minutes = (this.minutes + minutesToAdd) % 60;
         }
     }
 
     // addSeconds - with a single parameter which represents the number of seconds to add.
     public void addSeconds(int secondsToAdd) {
         if (secondsToAdd >= minValueAllowed && secondsToAdd <= maxValueAllowed) {
-                addMinutes(secondsToAdd / 60);
-                this.seconds = (this.seconds + secondsToAdd) % 60;
+            if (this.seconds + secondsToAdd > 59) {
+                addMinutes((this.seconds + secondsToAdd) / 60);
+            }
+            this.seconds = (this.seconds + secondsToAdd) % 60;
         }
     }
 
     // addMilliseconds - with a single parameter which represents the number of milliseconds to add.
     public void addMilliseconds(int millisecsToAdd) {
         if (millisecsToAdd >= minValueAllowed && millisecsToAdd <= maxValueAllowed) {
-                addSeconds(millisecsToAdd / 1000);
-                this.milliseconds = (this.milliseconds + millisecsToAdd) % 1000;
+            if (this.milliseconds + millisecsToAdd > 999) {
+                addSeconds((this.milliseconds + millisecsToAdd) / 1000);
+            }
+            this.milliseconds = (this.milliseconds + millisecsToAdd) % 1000;
         }
     }
 
     // print - with a single boolean parameter that indicates weather we want to display a 24 hours clock
     public void print(boolean show24HoursFormat) {
+        String hourString = "";
+
         if (show24HoursFormat) {
-            addZeroOrNotAndPrint();
-            System.out.printf("\n");
+            hourString = addZeroOrNotAndPrint() + "\n";
         }
         else {
             int hoursValueKeeper = hours;
             if (hours >= 12 && hours < 24) {
                 if (hours > 12)
                     hours = hours % 12;
-                addZeroOrNotAndPrint();
-                System.out.println("PM");
+                hourString = addZeroOrNotAndPrint() + "PM\n";
             }
             else {
-                addZeroOrNotAndPrint();
-                System.out.println("AM");
+                hourString += addZeroOrNotAndPrint() + "AM\n";
             }
             hours = hoursValueKeeper;
         }
+        System.out.print(hourString);
     }
 
     // addZeroOrNotAndPrint - a helper method that does the actual time fraction printing
-    private void addZeroOrNotAndPrint() {
+    private String addZeroOrNotAndPrint() {
+        String hourString = "";
+
         if (hours < 10)
-            System.out.printf("0" + hours + ":");
+            hourString += "0" + hours + ":";
         else
-            System.out.printf(hours + ":");
+            hourString += hours + ":";
 
         if (minutes < 10)
-            System.out.printf("0" + minutes + ":");
+            hourString += "0" + minutes + ":";
         else
-            System.out.printf(minutes + ":");
+            hourString += minutes + ":";
 
         if (seconds < 10)
-            System.out.printf("0" + seconds + ".");
+            hourString += "0" + seconds + ".";
         else
-            System.out.printf(seconds + ".");
+            hourString += seconds + ".";
 
         if (milliseconds < 10)
-            System.out.printf("00" + milliseconds + " ");
+            hourString += "00" + milliseconds + " ";
         else if (milliseconds < 100)
-            System.out.printf("0" + milliseconds + " ");
+            hourString += "0" + milliseconds + " ";
         else
-            System.out.printf(milliseconds + " ");
+            hourString += milliseconds + " ";
+
+        return hourString;
     }
 }
