@@ -5,15 +5,18 @@ import java.util.Scanner;
 public class ClockApplication {
     public static void main(String[] args) {
 
-        Scanner input  = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         int hours;
         int minutes;
         int seconds;
         int millisecs;
 
         System.out.println("This is the default clock:");
-        ClockBonus1 myClock1 = new ClockBonus1();
-        printClock(myClock1);
+        ClockBonus2 defaultClock = new ClockBonus2();
+        defaultClock.print(true);
+        defaultClock.print(false);
+
+        System.out.println("----- Time for some testing! --------");
 
         do {
             System.out.println("Please enter input for 'hours' (0..23):");
@@ -35,42 +38,47 @@ public class ClockApplication {
             millisecs = input.nextInt();
         } while (millisecs < 0 || millisecs > 999) ;
 
-        ClockBonus1 myClock2 = new ClockBonus1(hours, minutes, seconds, millisecs);
+        TimeUnit timeUnit2 = new TimeUnit(hours, minutes, seconds, millisecs);
+        ClockBonus2 userClock = new ClockBonus2(timeUnit2);
 
         System.out.println("\nThis is your base hour:");
-        printClock(myClock2);
+        userClock.print(true);
+        userClock.print(false);
 
         do {
             System.out.println("Please enter hours to add / subtract' (-1,000,000,000..1,000,000,000):");
             hours = input.nextInt();
         } while (hours < -1_000_000_000 || hours > 1_000_000_000) ;
-        myClock2.addHours(hours);
-        printClock(myClock2);
+
+        userClock.addHours(hours);
+        userClock.print(true);
+        userClock.print(false);
 
         do {
             System.out.println("Please enter minutes to add / subtract' (-1,000,000,000..1,000,000,000):");
             minutes = input.nextInt();
         } while (minutes < -1_000_000_000 || minutes > 1_000_000_000) ;
-        myClock2.addMinutes(minutes);
-        printClock(myClock2);
+
+        userClock.addMinutes(minutes);
+        userClock.print(true);
+        userClock.print(false);
 
         do {
             System.out.println("Please enter seconds to add / subtract' (-1,000,000,000..1,000,000,000):");
             seconds = input.nextInt();
         } while (seconds < -1_000_000_000 || seconds > 1_000_000_000) ;
-        myClock2.addSeconds(seconds);
-        printClock(myClock2);
+
+        userClock.addSeconds(seconds);
+        userClock.print(true);
+        userClock.print(false);
 
         do {
             System.out.println("Please enter milliseconds to add / subtract' (-1,000,000,000..1,000,000,000):");
             millisecs = input.nextInt();
         } while (millisecs < -1_000_000_000 || millisecs > 1_000_000_000) ;
-        myClock2.addMilliseconds(millisecs);
-        printClock(myClock2);
-    }
 
-        private static void printClock(ClockBonus1 clock) {
-            clock.print(true);
-            clock.print(false);
-        }
+        userClock.addMilliseconds(millisecs);
+        userClock.print(true);
+        userClock.print(false);
+    }
 }
