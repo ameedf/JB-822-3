@@ -35,8 +35,8 @@ public class Product {
         return price;
     }
 
-    public void print() {
-        System.out.println("Catalog ID: " + catalogId + ", Name: " + name + ", Price: " + price);
+    public String productRepresentation() {
+        return "Catalog ID: " + catalogId + ", Name: " + name + ", Price: " + price;
     }
 
     /**
@@ -45,7 +45,8 @@ public class Product {
      */
     public void updatePrice(float percent) {
         if (percent >= -100.0) {
-            this.price *= 1 + percent / 100.0;
+            double factor = 1 + percent / 100.0;
+            this.price *= factor;
         }
     }
 }
