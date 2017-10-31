@@ -34,4 +34,103 @@ package ameedf.jb8223.assignments.hw02;
  * BONUS 2: the same functionality as in "BONUS 1" while using as few member variables / memory as possible
  */
 public class Clock {
+}package clocktime;
+
+public class clock {
+	private int HH;
+	private int MM;
+	private int SS;
+	private int sss;
+	private String Timefinish;
+	private int timechange;
+
+	public clock(int HH, int MM, int SS, int sss) {
+		this.HH = HH;
+		this.MM = MM;
+		this.SS = SS;
+		this.sss = sss;
+
+	}
+
+	public clock() {
+		this.HH = 14;
+		this.MM = 7;
+		this.SS = 53;
+		this.sss = 980;
+	}
+
+	public void addhours(int HH) {
+		if (HH < 0 || HH > 1_000_000_00) {
+			return;
+		} else {
+			int secnoerHH = this.HH + HH;
+			this.HH = (secnoerHH % 24);
+
+		}
+	}
+
+	public void addMinutes(int MM) {
+
+		if (MM < 0 || MM > 1_000_000_00) {
+			return;
+
+		} else {
+			int secnoerMM = this.MM + MM;
+			this.MM = (secnoerMM % 60);
+			addhours(secnoerMM / 60);
+		}
+	}
+
+	public void addSecound(int SS) {
+		if (SS < 0 || SS > 1_000_000_00) {
+			return;
+
+		} else {
+			this.SS %= this.SS + SS;
+
+		}
+
+	}
+
+	public void addmilisecound(int sss) {
+		if (sss < 0 || sss > 1_000_000_00) {
+			return;
+
+		} else {
+			int secnoersss = this.sss + sss;
+			this.sss = (secnoersss % 100);
+			return;
+
+		}
+
+	}
+
+	public void printtime(boolean Timefinish) {
+		if (Timefinish == true) {
+			this.Timefinish = "AM/PM";
+			if (this.HH > 12) {
+				this.HH = this.HH - 12;
+
+			}
+
+		} else {
+			this.Timefinish = "";
+		}
+		if (HH < 12) {
+			System.out.print(this.HH + ":");
+
+		}
+		if (MM < 60) {
+			System.out.print(this.MM + ":");
+
+		}
+		if (SS < 60) {
+			System.out.print(this.SS + ":");
+
+		}
+		if (sss < 1000) {
+			System.out.print(this.sss + " " + this.Timefinish);
+		}
+	}
+
 }
