@@ -1,21 +1,21 @@
 package com.bank.accounts;
 
 public class RegularAccount {
-	private final String CLIENT_ID;
+	private final String clientId;
 	private int balance;
 	protected int commissionOnWithdrawal = 3;
 	protected int commissionOnDeposit = 1;
 	
 	public RegularAccount(String clientId) {
-		CLIENT_ID = clientId;
+		this.clientId = clientId;
 	}
 
 	public int getBalance() {
 		return balance;
 	}
 
-	public String getCLIENT_ID() {
-		return CLIENT_ID;
+	public String getClientId() {
+		return clientId;
 	}
 	
 	public void deposit(int sum) {

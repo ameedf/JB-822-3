@@ -13,7 +13,7 @@ public class BankApplication {
 		regular.withdraw(2000);
 		System.out.println("Current balance: " + regular.getBalance());
 		
-		System.out.println("----- REGULAR ACCOUNT-----");
+		System.out.println("----- BUSINESS ACCOUNT-----");
 		BusinessAccount business = new BusinessAccount("334585912");
 		for (int i = 0; i < 80; i++) {
 			business.deposit(100);
