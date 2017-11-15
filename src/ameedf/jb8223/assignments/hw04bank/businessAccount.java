@@ -37,7 +37,7 @@ public class businessAccount extends AbstractAccount {
 		}
 	}
 
-	public double getBonus() {
+	protected double getBonus() {
 		if(commissionOnDeposit == BONUS_LIMIT) {
 			lastOperationDescription += "\n --> getBonus> BONUS:" + (BONUS_LIMIT * BONUS_FACTOR) + " <-- ";
 			return BONUS_LIMIT * BONUS_FACTOR;
