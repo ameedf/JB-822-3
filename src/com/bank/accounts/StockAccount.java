@@ -1,4 +1,4 @@
-package com.bank.logic;
+package com.bank.accounts;
 
 import java.util.Random;
 

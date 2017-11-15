@@ -1,8 +1,8 @@
 package com.bank.runtime;
 
-import com.bank.logic.RegularAccount;
-import com.bank.logic.BusinessAccount;
-import com.bank.logic.StockAccount;
+import com.bank.accounts.BusinessAccount;
+import com.bank.accounts.RegularAccount;
+import com.bank.accounts.StockAccount;
 
 public class BankApplication {
 	public static void main(String[] args) {

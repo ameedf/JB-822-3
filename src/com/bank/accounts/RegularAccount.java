@@ -1,4 +1,4 @@
-package com.bank.logic;
+package com.bank.accounts;
 
 public class RegularAccount {
 	private final String CLIENT_ID;
