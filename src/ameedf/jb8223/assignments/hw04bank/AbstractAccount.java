@@ -51,11 +51,11 @@ public abstract class AbstractAccount {
 		}
 	}
 
-	abstract double getBonus();
+	abstract protected double getBonus(); 
 
 	@Override
 	public String toString() {
-		return "AbstractAccount [clientId=" + clientId + ", balance=" + balance + ", permittedOverdraft="
+		return "AbstractAccount [clientId=" + clientId + ", balance=" + round(balance,3) + ", permittedOverdraft="
 				+ permittedOverdraft + ", commissionOnWithdrawal=" + commissionOnWithdrawal + ", commissionOnDeposit="
 				+ commissionOnDeposit + "]";
 	}

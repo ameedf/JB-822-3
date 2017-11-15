@@ -29,7 +29,7 @@ public class bankApp {
 		String op = s.nextLine();
 		double sum;
 		do {
-			System.out.print("Enter account operation [ deposit | withdraw | status ]:");
+			System.out.print("Enter account operation [ deposit | withdraw | status | exit ]:");
 			op = s.nextLine();
 			switch (op.toLowerCase()) {
 				case "d":
