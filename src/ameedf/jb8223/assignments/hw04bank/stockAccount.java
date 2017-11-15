@@ -30,7 +30,7 @@ public class stockAccount extends AbstractAccount {
 		//lastOperationDescription += " changeCommisions> CommissionOnDeposit:" + commissionOnDeposit + " commissionOnWithdrawal:" + commissionOnWithdrawal + "\n";
 	}
 
-	public double getBonus() {
+	protected double getBonus() {
 		double bonus = (commissionOnDeposit - commissionOnWithdrawal);
 		lastOperationDescription += " --> BONUS " + bonus + " ";
 		return bonus ;

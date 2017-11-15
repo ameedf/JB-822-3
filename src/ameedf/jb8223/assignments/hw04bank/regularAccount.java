@@ -18,7 +18,7 @@ public class regularAccount extends AbstractAccount{
 		return super.withdraw(sum + commissionOnWithdrawal);
 	}
 	
-	public double getBonus() { return 0;	}
+	public protected getBonus() { return 0;	}
 
 	@Override
 	public String toString() {
