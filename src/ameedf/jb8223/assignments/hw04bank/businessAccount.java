@@ -47,8 +47,6 @@ public class businessAccount extends AbstractAccount {
 
 	@Override
 	public String toString() {
-		String message = super.toString(); 
-		message += "businessAccount [depositCounter=" + depositCounter + " ]";
-		return message;
+		return "TYPE: businessAccount: " + super.toString();
 	}
 }

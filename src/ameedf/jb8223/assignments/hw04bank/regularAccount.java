@@ -19,6 +19,11 @@ public class regularAccount extends AbstractAccount{
 	}
 	
 	public double getBonus() { return 0;	}
+
+	@Override
+	public String toString() {
+		return "TYPE: regularAccount: " + super.toString();
+	}
 	
 	
 

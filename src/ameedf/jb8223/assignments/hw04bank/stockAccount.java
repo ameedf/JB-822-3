@@ -35,4 +35,9 @@ public class stockAccount extends AbstractAccount {
 		lastOperationDescription += " --> BONUS " + bonus + " ";
 		return bonus ;
 	}
+	
+	@Override
+	public String toString() {
+		return "TYPE: stockAccount: " + super.toString();
+	}
 }
