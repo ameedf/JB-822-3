@@ -1,8 +1,6 @@
 package ameedf.jb8223.assignments.hw03cards;
 import java.util.Random;
 
-import hw.oop.cards.Card;
-
 public class Deck {
 	private static final int SUIT_SIZE = 4;
 	private static final int RANK_SIZE = 13;
