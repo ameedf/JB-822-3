@@ -1,5 +1,6 @@
 package ameedf.jb8223.assignments.hw04bank;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class bankApp {
@@ -30,11 +31,16 @@ public class bankApp {
 		double sum;
 		do {
 			System.out.print("Enter account operation [ deposit | withdraw | status | exit ]:");
-			op = s.nextLine();
+			op = s.next();
 			switch (op.toLowerCase()) {
 				case "d":
 				case "deposit": System.out.print("Enter amount:"); 
-				                sum = s.nextDouble(); 
+								try {
+									sum = s.nextDouble();
+								} catch (InputMismatchException ex) {
+					                System.out.println("Wrong input. Ony number input will be processed.");
+					                sum = s.nextDouble();
+					            }
 				                account.deposit((double)sum);
 				                System.out.println(account.getLastOperationDescription());
 				                break;
@@ -47,6 +53,8 @@ public class bankApp {
 				case "s":
 				case "status":  System.out.println(account);
 			}
+			//Clean System.in buffer.
+			s.reset();
 		} while(!op.toLowerCase().equals("exit"));
 		
 		System.out.println("------------------------");
