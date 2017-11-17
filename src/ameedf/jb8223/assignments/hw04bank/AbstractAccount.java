@@ -51,7 +51,7 @@ public abstract class AbstractAccount {
 		}
 	}
 
-	abstract protected double getBonus();
+	abstract protected double getBonus(); 
 
 	@Override
 	public String toString() {
