@@ -5,9 +5,11 @@ public class businessAccount extends regularAccount {
 	private static final int BONUS_COUNT = 2;
 	private static final int BONUS_LIMIT = 5;
 	private static final double BONUS_FACTOR = 20.0;
-
+	
 	public businessAccount(String clientId, double balance, double permittedOverdraft) {
-		super(clientId, balance, permittedOverdraft, 1, 1);
+		super(clientId, balance, permittedOverdraft);
+		this.commissionOnWithdrawal = 1;
+		this.commissionOnDeposit = 1;
 		depositCounter = 0;
 	}
 	
@@ -52,7 +54,7 @@ public class businessAccount extends regularAccount {
 	@Override
 	public String toString() {
 		String message = super.toString(); 
-		message += " \n businessAccount [depositCounter=" + depositCounter + " ]";
+		message += " \n SubType: businessAccount [depositCounter=" + depositCounter + " ]";
 		return message;
 	}
 }

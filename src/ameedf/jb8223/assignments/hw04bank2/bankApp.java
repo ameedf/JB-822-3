@@ -18,10 +18,10 @@ public class bankApp {
 		double permittedOverdraft = s.nextDouble();
 
 		switch (accountType.toLowerCase()) {
-			case "regular": account = new regularAccount("RA0000",balance,permittedOverdraft,3 ,1 ); break;
+			case "regular": account = new regularAccount("RA0000",balance,permittedOverdraft); break;
 			case "business":  account = new businessAccount("BA0000",balance,permittedOverdraft); break;
 			case "stock":  account = new stockAccount("CA0000",balance,permittedOverdraft); break;
-			default:account = new regularAccount("RA0000",balance,permittedOverdraft, 3 ,1);break;
+			default:account = new regularAccount("RA0000",balance,permittedOverdraft);break;
 		}
 		
 		System.out.println(account.getLastOperationDescription());

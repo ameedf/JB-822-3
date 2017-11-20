@@ -9,14 +9,13 @@ public class regularAccount {
 	protected double commissionOnDeposit;
 	protected String lastOperationDescription;
 
-	public regularAccount(String clientId, double balance, double permittedOverdraft, double commissionOnWithdrawal,
-			double commissionOnDeposit) {
+	public regularAccount(String clientId, double balance, double permittedOverdraft) {
 		this.clientId = clientId;
 		this.balance = balance;
 		this.permittedOverdraft = permittedOverdraft;
-		this.commissionOnWithdrawal = commissionOnWithdrawal;
-		this.commissionOnDeposit = commissionOnDeposit;
-		this.lastOperationDescription = "Account ID " + clientId + " created successful!";
+		this.commissionOnWithdrawal = 3;
+		this.commissionOnDeposit = 1;
+		this.lastOperationDescription = "Account ID: " + clientId + " created successful!";
 	}
 	
 	public String getClientId() {
@@ -31,6 +30,10 @@ public class regularAccount {
 		return permittedOverdraft;
 	}
 
+	protected void SetPermittedOverdraft( double sum) {
+		this.permittedOverdraft = sum;
+	}
+	
 	public String getLastOperationDescription() {
 		String mess = lastOperationDescription;
 		lastOperationDescription = "";
@@ -39,16 +42,16 @@ public class regularAccount {
 
 	public void deposit(double sum) {
 		this.balance += sum + this.commissionOnDeposit;
-		lastOperationDescription += "deposit>" + sum + ", commission:" + this.commissionOnDeposit+ ", Current balance:" + round(balance, 3);
+		lastOperationDescription += "\n deposit>" + sum + ", commission:" + this.commissionOnDeposit+ ", Current balance:" + round(balance, 3);
 	}
 
 	public boolean withdraw(double sum) {
 		if ((balance + permittedOverdraft - (sum + this.commissionOnWithdrawal) ) >= 0) {
 			this.balance -= (sum + this.commissionOnWithdrawal);
-			lastOperationDescription += "withdraw>" + sum +", commission:" + this.commissionOnWithdrawal +" Success! Current balance:" + round(balance, 3);
+			lastOperationDescription += "\n withdraw>" + sum +", commission:" + this.commissionOnWithdrawal +" Success! Current balance:" + round(balance, 3);
 			return true;
 		} else {
-			lastOperationDescription += "withdraw>" + sum +", commission:" + this.commissionOnWithdrawal +" Failed! Current balance:" + round(balance, 3);
+			lastOperationDescription += "\n withdraw>" + sum +", commission:" + this.commissionOnWithdrawal +" Failed! Current balance:" + round(balance, 3);
 			return false;
 		}
 	}
@@ -57,7 +60,7 @@ public class regularAccount {
 	
 	@Override
 	public String toString() {
-		return "regularAccount [clientId=" + clientId + ", balance=" + balance + ", permittedOverdraft="
+		return "Type: regularAccount [clientId=" + clientId + ", balance=" + balance + ", permittedOverdraft="
 				+ permittedOverdraft + ", commissionOnWithdrawal=" + commissionOnWithdrawal + ", commissionOnDeposit="
 				+ commissionOnDeposit + "]";
 	}
