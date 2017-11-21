@@ -1,4 +1,4 @@
-package src.ameedf.jb8223.assignments.BankAccount;
+package ameedf.jb8223.assignments.BankAccount;
 
 import java.util.Random;
 
@@ -41,7 +41,7 @@ public class RegularAccount {
         if (balance - (sum + commissionOnWithdrawal) < 0)
             System.out.println("Not enough balance for withdrawal, please try a smaller amount");
         else {
-            balance -= (sum + commissionOnWithdrawal);
+            balance -= (sum + commissionOnWithdrawal + getBonus());
             balance = Math.round(balance * 100.0) / 100.0;
         }
     }

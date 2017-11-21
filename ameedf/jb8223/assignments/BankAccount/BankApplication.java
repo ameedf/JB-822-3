@@ -1,4 +1,4 @@
-package src.ameedf.jb8223.assignments.BankAccount;
+package ameedf.jb8223.assignments.BankAccount;
 
 public class BankApplication {
 

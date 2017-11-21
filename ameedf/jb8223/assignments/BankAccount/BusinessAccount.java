@@ -1,4 +1,4 @@
-package src.ameedf.jb8223.assignments.BankAccount;
+package ameedf.jb8223.assignments.BankAccount;
 
 public class BusinessAccount extends RegularAccount {
 
@@ -8,6 +8,7 @@ public class BusinessAccount extends RegularAccount {
         commissionOnDeposit = 1;
     }
 
+    @Override
     public void deposit(double sum) {
         super.deposit(sum);
         if (numOfDeposits % 10 == 0) {
@@ -18,6 +19,7 @@ public class BusinessAccount extends RegularAccount {
         }
     }
 
+    @Override
     protected double getBonus() {
         if (commissionOnDeposit == 7)
             return (commissionOnDeposit * 20);
