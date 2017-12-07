@@ -12,6 +12,7 @@ public class Santa extends Person implements Dealer {
 	public void deal() {
 		if (amountOfToys > 0) {
 			System.out.println("Dealing toys, ho-ho-ho!");
+			amountOfToys--;
 		} else {
 			System.out.println("Christmass is over, go home!");
 		}

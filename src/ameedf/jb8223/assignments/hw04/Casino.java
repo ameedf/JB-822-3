@@ -10,7 +10,7 @@ package ameedf.jb8223.assignments.hw04;
  * You should change the code so the tests will work
  */
 public class Casino {
-	private Dealer[] dealers = new Dealer[2];
+	private Dealer[] dealers = new Dealer[3];
 	private Consumer[] consumers = new Consumer[6];
 	
 	private String[] names = {"Tarmigol", "Josh", "Trevor", "Tommy", "Johnny", "Daniel"};
@@ -46,6 +46,9 @@ public class Casino {
     		DrugsDealer drugsDealer = new DrugsDealer(9, "Scarface", 29);
     		drugsDealer.setAddictedPlayers(addictedPlayers);
     		dealers[1] = drugsDealer;
+    		
+    		Santa santa = new Santa(10, "Pennywise", 10);
+    		dealers[2] = santa;
     		
     }
 

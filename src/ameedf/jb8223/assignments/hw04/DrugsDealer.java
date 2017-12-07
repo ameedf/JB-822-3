@@ -20,7 +20,7 @@ public class DrugsDealer extends Person implements Dealer {
 	@Override
 	public void deal() {
 		for (AddictedPlayer addictedPlayer : addictedPlayers) {
-			if (amountOfDrugs >= 10) {
+			if (amountOfDrugs >= 10) {  
 				addictedPlayer.consume("drug");
 				amountOfDrugs -= 10;				
 			} else {
