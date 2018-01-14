@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div class="players" align="center">
+      <div class="player" id="X-player-block"align="center">
+        <h1 class="big-symbol">X</h1>
+        <h2>Score: <span class="badge" id="X-player-score">0</span><h2>
+      </div>
+      <div class="player" id="O-player-block" align="center">
+        <h1 class="big-symbol">O</h1>
+        <h2>Score: <span class="badge" id="O-player-score">0</span><h2>
+      </div>
+    </div>
+
+    <div align="center" class="message" id="messageBox">Welcome to the X-O fun</div>
+
+    <div class="buttons" align="center">
+      <button type="button" name="button" onclick="startGame()">New game</button>
+      <button type="button" name="button" onclick="resetScore()">Reset score</button>
+    </div>
+
+  <table class="big-symbol" align="center">
+    <tr>
+      <td> <div class="content" id="A1"></div></td>
+      <td><div class="content" id="B1""></div></td>
+      <td><div class="content" id="C1""></div></td>
+    </tr>
+    <tr>
+      <td><div class="content" id="A2""></div></td>
+      <td><div class="content" id="B2""></div></td>
+      <td><div class="content" id="C2"></div></td>
+    </tr>
+    <tr>
+      <td><div class="content" id="A3"></div></td>
+      <td><div class="content" id="B3"></div></td>
+      <td><div class="content" id="C3"></div></td>
+    </tr>
+  <table>`
+
+  <script type="text/javascript" src="application.js"></script>
+  </body>
+</html>
