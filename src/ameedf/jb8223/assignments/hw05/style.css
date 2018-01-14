@@ -1,0 +1,117 @@
+table {
+  width: 90%;
+}
+
+td {
+  width: 33.33%;
+  position: relative;
+}
+
+td:after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+
+button {
+  font-size: 18px;
+  color: rgb(251, 235, 175);
+  padding: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  background: rgb(52, 127, 127);
+  border: none;
+  padding-left: 23px;
+  padding-right: 23px;
+}
+
+button:hover {
+  background: rgb(237, 71, 65);
+  cursor: pointer;
+}
+
+td .content {
+  position: absolute;
+  margin: 2px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(251, 235, 175);
+  color: rgb(116, 191, 157);
+  display: table-cell;
+  line-height: 125px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+body {
+  background-color: rgb(116, 191, 157);
+  font-family: "Verdana", geneva, sans-serif;
+}
+.content:hover {
+  background: rgb(237, 71, 65);
+}
+
+table {
+  height: 390px;
+  width: 390px;
+  align: center;
+  margin-top: 15px;
+}
+
+.player {
+  display: inline-block;;
+  *display: inline;
+  zoom: 1;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+  color: rgb(116, 191, 157);
+  /*width: 50%;*/
+}
+
+.player {
+  background: rgb(251, 235, 175);
+  margin: 15px;
+  padding: 15px;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.big-symbol{
+  font-size: 40px;
+  color: rgb(52, 127, 127);
+}
+
+.message {
+  font-size: 30px;
+  color: rgb(251, 235, 175);
+  padding-bottom: 20px;
+}
+
+.active {
+  background: rgb(237, 71, 65);
+  border-color: red;
+}
+
+.winner {
+  background: rgb(237, 71, 65) !important;
+}
+
+.badge {
+  background-color: rgb(116, 191, 157);
+  text-align:center;
+  color: rgb(251, 235, 175);
+  padding:5px 10px;
+  /*font-size: 15px;*/
+  width:18px;
+  height:18px;
+  line-height:18px;
+  border-radius:50%;
+}
+
+.recent-section {
+  background: rgb(52, 127, 127) !important;
+}
