@@ -1,0 +1,249 @@
+
+
+/*default style for page including tag <title>*/
+*{
+	background-color: whait;
+	text-align: center;
+}
+
+/*style for tags*/
+span {
+	text-align: center;
+}
+
+.main {
+    margin: auto;
+    width: 90%;
+    border: 3px dotted green;
+    padding: 10px;
+	text-align: center;
+	display: flex;
+  	flex-direction: column;
+
+    width: 75%;
+    min-width: 350px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.main_body {
+	margin: 20px;
+}
+
+.last_move {
+	background-color: lightyellow;
+}
+
+.illegal_move {
+	background-color: red;
+}
+
+.default_style {
+	background-color: white;
+}
+
+
+.x_style.winner_path_style {
+	border: 5px double #FFA500;
+}
+
+.x_style {
+	background-color: lightblue;
+	color:black;
+	padding: 10px;
+}
+
+.o_style {
+	background-color: lightgreen;
+	color:black;
+	padding: 10px;
+}
+
+.settings_buttons {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	visibility: hidden;
+	height: 20%;
+}
+
+
+.btn_dis_block1 {
+	float: left;
+    display: inline;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+.btn_dis_block2 {
+
+	float: right;
+    display: inline;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn_restart_game {
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #F32C52;
+}
+
+.btn_restart_game:hover {
+	font-size: 15px;
+	font-weight: bold;
+	color: #F32C52;
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+.btn_reset_game {
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #2c52f3;
+}
+
+.btn_reset_game:hover {
+	font-size: 15px;
+	font-weight: bold;
+	color: #2c52f3;
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+.winner_info {
+	padding: 10px;
+	color: #F32C52;
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+
+/* style for class */
+.main_tbl {
+	width:90%;
+	height:90%;
+    margin: auto;
+	
+	font-size: 1.125 em;
+	font-weight: bold;
+	color:black;
+
+	text-align: center;
+	border-collapse: collapse;
+	overflow: auto;
+}
+
+.main_tbl td {
+    margin: 0;
+    padding: 10px;
+	text-align: center;
+	font-weight: bold;
+
+	border: 2px solid black;
+	border-collapse: collapse;
+
+	width: 50px;
+	height: 50px;
+
+
+	
+	overflow: auto;
+}
+
+
+
+.span_red {
+	color:red;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.span_black {
+	color:black;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.span_green {
+	color:green;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.score_block {
+	width: 78%;
+	margin: auto;
+	text-align: center;
+	border-style: 3px solid black;
+}
+
+.score {
+	padding: 7px 10px;
+	color: #FFFFFF;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+	background-color: green;
+	border-style: solid black;
+    border-radius: 50%;
+    border-color: black;
+}
+
+.dis_block1 {
+	padding: 15px;
+	float: left;
+	border: 1px solid black;
+    width: 70px; /* or less */
+    display: inline;
+    color: black;
+    font-weight: bold;
+    text-align: left;
+}
+.dis_block2 {
+	padding: 15px;
+	float: right;
+	border: 1px solid black;
+    width: 70px; /* or less */
+    display: inline;
+    color: black;
+    font-weight: bold;
+    text-align: right;
+}
+
+
+.footer {
+	margin: auto;
+	text-align: center;
+	width: 50%;
+}
+
+.messages .winner_info{
+	margin-top: 20px;
+	background-color: red;
+	color: white;
+}
+
+.winner_info{
+	margin-top: 20px;
+	color: red;
+}
+
+.small_font {
+	font-size: 70%;
+}
+
+.small_font:hover {
+	font-size: 170%;
+}
+
+/* style for some element ID "last"*/
+#last {
+	font-size: 870%;
+	color:green;
+	font-weight: bold;
+}
+

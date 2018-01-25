@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example 1</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<script rel="stylesheet" type="text/javascript" src="main.js" async></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body onload="drow_current_turn();">
+<div class="main">
+	<div>
+		<div class="header">
+			<span class="span_red" onclick="alert('Tic-Tak');">Tic</span>
+			<span class="span_black">Tac</span>
+			<span class="span_green">Toe</span>
+		</div>
+		<br /><br />
+		<div class = "score_block">
+			<div class="dis_block1">
+				<div>X</div>
+				<div>Score <span id="x_score" class="score">0</span></div>
+			</div>
+			<div class="dis_block2">
+				<div>O</div>
+				<div>Score <span id="o_score" class="score">0</span></div>
+			</div>
+		</div>
+		<br /><br />
+	</div>
+	<div class="main_body">
+		<br /><br />
+		<table class="main_tbl">
+			<tbody>
+				<tr>
+					<td id="cell-00" onclick="cell_click(0,0);" ></td>
+					<td id="cell-01" onclick="cell_click(0,1);" ></td>
+					<td id="cell-02" onclick="cell_click(0,2);" ></td>
+				</tr>
+				<tr>
+					<td id="cell-10" onclick="cell_click(1,0);" ></td>
+					<td id="cell-11" onclick="cell_click(1,1);" ></td>
+					<td id="cell-12" onclick="cell_click(1,2);" ></td>
+				</tr>
+				<tr>
+					<td id="cell-20" onclick="cell_click(2,0);" ></td>
+					<td id="cell-21" onclick="cell_click(2,1);" ></td>
+					<td id="cell-22" onclick="cell_click(2,2);" ></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="settings_buttons" id="settings_buttons">
+		<div class="btn_dis_block1">
+			<input onclick="restart_game();" id="restart_button" class="btn_restart_game" type="button" name="" value="Play again!" />
+		</div>
+		<div class="btn_dis_block2">
+			<input onclick="reset_game();" id="reset_button" class="btn_reset_game" type="button" name="" value="Reset game!" />
+		</div>
+	</div>
+	<div class="footer">
+		<div class="winner_info" id="winner_info"></div>
+		<div class="player_turn" id="player_turn"></div>
+		<div class="messages" id="game_log"></div>
+	</div>
+</div>
+
+</body>
+</html>
