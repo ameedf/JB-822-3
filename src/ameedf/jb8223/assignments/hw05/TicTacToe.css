@@ -1,0 +1,117 @@
+#score-area
+{
+    width: 250px;
+    margin: 0 auto;
+}
+
+#x-score-box {
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-radius: 10px;
+    float: left;
+    font-size: large;
+    text-align: center;
+
+}
+
+#x-score
+{
+    color: red;
+    font-size: x-large;
+}
+
+#o-score-box {
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-radius: 10px;
+    float: right;
+    font-size: large;
+    text-align: center;
+}
+
+#o-score
+{
+    color: green;
+    font-size: x-large;
+}
+
+#x-score-num
+{
+    color: black;
+    background-color: #ffc0c3;
+    border-style: solid;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+#o-score-num
+{
+    color: black;
+    background-color: #c0e6c0;
+    border-style: solid;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+#above-board-area
+{
+    width:255px;
+    float: left;
+    padding: 40px 0;
+    text-align: center;
+}
+
+#btn
+{
+    padding: 10px;
+    font-weight: bold;
+}
+
+#board-area
+{
+    width: 255px;
+    margin: 0 auto;
+}
+
+#board
+{
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    float: left;
+}
+
+#board-table
+{
+    border-style: solid;
+    border-radius: 10px;
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    background-color: white;
+}
+
+#below-board-area
+{
+    width:255px;
+    float: left;
+}
+
+#msg-area
+{
+    clear: both;
+    font-size: large;
+    text-align: center;
+    font-weight: bold;
+}
+
+#error-area
+{
+    clear: both;
+    font-size: large;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
